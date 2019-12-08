@@ -27,11 +27,11 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="challengeCell" id="bwZ-hA-1kh">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="challengeCell" rowHeight="80" id="bwZ-hA-1kh" customClass="SwipeTableViewCell" customModule="SwipeCellKit">
+                                <rect key="frame" x="0.0" y="72" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bwZ-hA-1kh" id="LCH-VG-qMX">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -41,6 +41,7 @@
                             <outlet property="delegate" destination="3hy-rf-IFK" id="DRI-cp-Wn6"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Challenges" id="Jmo-Gk-joh">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Q9W-S7-lbN">
                             <connections>
@@ -48,13 +49,14 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="H8T-vG-Cwb" kind="show" identifier="toShowView" id="uC9-a5-GUz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ptm-sI-EP2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1092" y="315"/>
+            <point key="canvasLocation" x="2031.2" y="314.39280359820094"/>
         </scene>
         <!--Create Challenge-->
         <scene sceneID="ywY-KU-WaB">
@@ -65,19 +67,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of The Challenge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfX-bA-VWT">
-                                <rect key="frame" x="85.5" y="40" width="204" height="24"/>
+                                <rect key="frame" x="85.5" y="84" width="204" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Motivation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCx-CX-Hfd">
-                                <rect key="frame" x="141.5" y="149" width="92" height="24"/>
+                                <rect key="frame" x="141.5" y="193" width="92" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hYN-gv-uXW">
-                                <rect key="frame" x="72.5" y="74" width="230" height="30"/>
+                                <rect key="frame" x="72.5" y="118" width="230" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="230" id="uX6-Jp-54f"/>
                                 </constraints>
@@ -86,7 +88,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8du-fZ-7XO">
-                                <rect key="frame" x="72.5" y="183" width="230" height="90"/>
+                                <rect key="frame" x="72.5" y="227" width="230" height="90"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="230" id="sNz-hJ-8Ot"/>
@@ -96,7 +98,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fRN-IL-8oJ">
-                                <rect key="frame" x="0.0" y="373" width="375" height="95"/>
+                                <rect key="frame" x="0.0" y="417" width="375" height="95"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="EwD-mX-mas"/>
                                 </constraints>
@@ -105,7 +107,7 @@
                                 </date>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPP-ve-xF1">
-                                <rect key="frame" x="165.5" y="576" width="44" height="36"/>
+                                <rect key="frame" x="165.5" y="532" width="44" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="done"/>
                                 <connections>
@@ -135,12 +137,11 @@
                         <outlet property="dateStarted" destination="fRN-IL-8oJ" id="nNm-EN-9ej"/>
                         <outlet property="motivationText" destination="8du-fZ-7XO" id="10R-h9-Jkq"/>
                         <outlet property="nameOfTheChallenge" destination="hYN-gv-uXW" id="b6a-TH-W7b"/>
-                        <segue destination="3hy-rf-IFK" kind="show" identifier="toChallengesView" id="VM3-J1-tps"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RyN-EY-ucF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1988" y="16.641679160419791"/>
+            <point key="canvasLocation" x="2927.1999999999998" y="16.641679160419791"/>
         </scene>
         <!--Show Challenge-->
         <scene sceneID="dVm-Df-6tN">
@@ -151,13 +152,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Motivation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcG-RW-p6C">
-                                <rect key="frame" x="141.5" y="40" width="92" height="24"/>
+                                <rect key="frame" x="141.5" y="84" width="92" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SxF-yK-1GI">
-                                <rect key="frame" x="72.5" y="74" width="230" height="90"/>
+                                <rect key="frame" x="72.5" y="118" width="230" height="90"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="230" id="Xsi-pm-2Fw"/>
@@ -167,13 +168,13 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="days without fail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEd-Xa-5KG">
-                                <rect key="frame" x="125.5" y="224" width="124" height="20.5"/>
+                                <rect key="frame" x="125.5" y="268" width="124" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kr5-q7-xu8">
-                                <rect key="frame" x="157.5" y="264.5" width="60" height="60"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kr5-q7-xu8">
+                                <rect key="frame" x="157.5" y="308.5" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="NI7-cM-wfR"/>
                                     <constraint firstAttribute="height" constant="60" id="Var-zw-Zu4"/>
@@ -183,8 +184,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7i-gu-KHg">
-                                <rect key="frame" x="170" y="394.5" width="35" height="30"/>
+                                <rect key="frame" x="170" y="438.5" width="35" height="30"/>
                                 <state key="normal" title="reset"/>
+                                <connections>
+                                    <action selector="resetButtonPressed:" destination="H8T-vG-Cwb" eventType="touchUpInside" id="oIz-B5-dXz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -204,11 +208,12 @@
                     </view>
                     <connections>
                         <outlet property="motivationText" destination="SxF-yK-1GI" id="jOe-NS-0Lr"/>
+                        <outlet property="numOfDays" destination="kr5-q7-xu8" id="9Ib-0Q-Sck"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opc-fI-iuQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1988" y="820.83958020989508"/>
+            <point key="canvasLocation" x="2927.1999999999998" y="820.83958020989508"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hEp-zd-hqK">
@@ -221,16 +226,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="3hy-rf-IFK" kind="relationship" relationship="rootViewController" id="k0u-uu-ulb"/>
+                        <segue destination="3hy-rf-IFK" kind="relationship" relationship="rootViewController" id="C4T-7A-x1w"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uPH-zv-jRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="228" y="315"/>
+            <point key="canvasLocation" x="1130" y="-84"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Dek-vy-OfZ"/>
-        <segue reference="VM3-J1-tps"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -10,6 +10,10 @@ import UIKit
 
 class createChallengeView: UIViewController {
     
+   
+
+    
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     @IBOutlet weak var nameOfTheChallenge: UITextField!
@@ -36,7 +40,8 @@ class createChallengeView: UIViewController {
         tmpChallenge.dateStart = dateStarted.date
         
         self.saveItem()
-        print(dateStarted.date)
+        print("------------")
+        //print(dateStarted.date - date.timeIntervalSinceNow)
         
         //performSegue(withIdentifier: "toChallengesView", sender: self)
         _ = navigationController?.popViewController(animated: true)

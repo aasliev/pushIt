@@ -15,9 +15,11 @@
 		36CF1AB92374CDCB000C6E7B /* challengesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CF1AB82374CDCB000C6E7B /* challengesView.swift */; };
 		36CF1ABB2374CDF6000C6E7B /* createChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CF1ABA2374CDF6000C6E7B /* createChallengeView.swift */; };
 		36CF1ABD2374CE1B000C6E7B /* showChallengesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CF1ABC2374CE1B000C6E7B /* showChallengesView.swift */; };
+		EC8360170689A238BAD3EE2C /* Pods_PushIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6EEB43BB95F6B7781166E15 /* Pods_PushIt.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0CEFCD4FFFF63B794D3F5EBD /* Pods-PushIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PushIt.debug.xcconfig"; path = "Target Support Files/Pods-PushIt/Pods-PushIt.debug.xcconfig"; sourceTree = "<group>"; };
 		36CF1A9C23746BF9000C6E7B /* PushIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36CF1A9F23746BF9000C6E7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36CF1AA423746BF9000C6E7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -28,6 +30,8 @@
 		36CF1AB82374CDCB000C6E7B /* challengesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = challengesView.swift; sourceTree = "<group>"; };
 		36CF1ABA2374CDF6000C6E7B /* createChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createChallengeView.swift; sourceTree = "<group>"; };
 		36CF1ABC2374CE1B000C6E7B /* showChallengesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showChallengesView.swift; sourceTree = "<group>"; };
+		DDEF64CFA625B7CB15D1FB70 /* Pods-PushIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PushIt.release.xcconfig"; path = "Target Support Files/Pods-PushIt/Pods-PushIt.release.xcconfig"; sourceTree = "<group>"; };
+		E6EEB43BB95F6B7781166E15 /* Pods_PushIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PushIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +39,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC8360170689A238BAD3EE2C /* Pods_PushIt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		051093076CCEB699F9C95DDB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0CEFCD4FFFF63B794D3F5EBD /* Pods-PushIt.debug.xcconfig */,
+				DDEF64CFA625B7CB15D1FB70 /* Pods-PushIt.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		36CF1A9323746BF9000C6E7B = {
 			isa = PBXGroup;
 			children = (
 				36CF1A9E23746BF9000C6E7B /* PushIt */,
 				36CF1A9D23746BF9000C6E7B /* Products */,
+				051093076CCEB699F9C95DDB /* Pods */,
+				AFE23CE6EF6965AF03CAB606 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +114,14 @@
 			path = "Data Model";
 			sourceTree = "<group>";
 		};
+		AFE23CE6EF6965AF03CAB606 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E6EEB43BB95F6B7781166E15 /* Pods_PushIt.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -104,9 +129,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36CF1AB123746BFB000C6E7B /* Build configuration list for PBXNativeTarget "PushIt" */;
 			buildPhases = (
+				454753C30177FA765711004B /* [CP] Check Pods Manifest.lock */,
 				36CF1A9823746BF9000C6E7B /* Sources */,
 				36CF1A9923746BF9000C6E7B /* Frameworks */,
 				36CF1A9A23746BF9000C6E7B /* Resources */,
+				3236679075D4629C29819A97 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -162,6 +189,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3236679075D4629C29819A97 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PushIt/Pods-PushIt-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PushIt/Pods-PushIt-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PushIt/Pods-PushIt-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		454753C30177FA765711004B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PushIt-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		36CF1A9823746BF9000C6E7B /* Sources */ = {
@@ -316,6 +385,7 @@
 		};
 		36CF1AB223746BFB000C6E7B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CEFCD4FFFF63B794D3F5EBD /* Pods-PushIt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -334,6 +404,7 @@
 		};
 		36CF1AB323746BFB000C6E7B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDEF64CFA625B7CB15D1FB70 /* Pods-PushIt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

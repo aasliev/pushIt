@@ -1,0 +1,16 @@
+PODS:
+  - SwipeCellKit (2.5.4)
+
+DEPENDENCIES:
+  - SwipeCellKit (= 2.5.4)
+
+SPEC REPOS:
+  trunk:
+    - SwipeCellKit
+
+SPEC CHECKSUMS:
+  SwipeCellKit: 4eada3884ab1bbae5e8d2fb9030c242aa23d7f42
+
+PODFILE CHECKSUM: d454acbf1674e98ae7c4afbdebd7d54a23349b4c
+
+COCOAPODS: 1.8.3

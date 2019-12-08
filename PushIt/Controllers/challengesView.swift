@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import SwipeCellKit
+
 
 class challengesView: UITableViewController {
 
@@ -19,6 +21,7 @@ class challengesView: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         loadItems()
+        tableView.rowHeight = 80
     }
     
     
@@ -28,8 +31,9 @@ class challengesView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as! SwipeTableViewCell
         cell.textLabel?.text = itemArray[indexPath.row].name
+        cell.delegate = self
         
         return cell
     }
@@ -46,31 +50,6 @@ class challengesView: UITableViewController {
     }
     
     
-    //MARK: - Add New Challenges
-    
-    @IBAction func addNewChallenge(_ sender: UIBarButtonItem) {
-//        var textField = UITextField()
-//
-//        let alert = UIAlertController(title: "Add New Challenge", message: "", preferredStyle: .alert)
-//
-//        let action = UIAlertAction(title: "Add Challenge", style: .default) { (action) in
-//            //what will happen when the user clicks the add button
-//            let newChallenge = Challenge(context: self.context)
-//            newChallenge.name = textField.text!
-//
-//            self.loadItems()
-//            self.saveItems()
-        
-//        }
-//        alert.addTextField { (alertTextField) in
-//            alertTextField.placeholder = "Create new challenge"
-//            textField = alertTextField
-//        }
-//        alert.addAction(action)
-//
-//        present(alert, animated: true, completion: nil)
-        
-    }
     
     //MARK: - Model Manipulation Methods
     
@@ -102,9 +81,9 @@ extension challengesView: UISearchBarDelegate
 {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let request : NSFetchRequest<Challenge> = Challenge.fetchRequest()
-        request.predicate = NSPredicate(format: "nameOfTheChallenge CONTAINS[cd] %@", searchBar.text!)
+        request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
         
-        request.sortDescriptors = [NSSortDescriptor(key: "nameOfTheChallenge", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         
         loadItems(with: request)
         tableView.reloadData()
@@ -121,5 +100,25 @@ extension challengesView: UISearchBarDelegate
             tableView.reloadData()
         }
     }
+    
+}
+
+
+extension challengesView: SwipeTableViewCellDelegate{
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+                self.context.delete(self.itemArray[indexPath.row])
+                self.itemArray.remove(at: indexPath.row)
+                self.saveItems()
+        }
+        
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "trash-icon")
+        
+        return [deleteAction]
+    }
+    
     
 }
