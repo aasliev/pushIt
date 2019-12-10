@@ -25,15 +25,16 @@ class createChallengeView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let borderColor : UIColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-        motivationText.layer.borderWidth = 1.5
-        motivationText.layer.borderColor = borderColor.cgColor
+        //let borderColor : UIColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        //motivationText.layer.borderWidth = 1.5
+        //motivationText.layer.borderColor = borderColor.cgColor
+        self.hideKeyboardWhenTappedAround()
     }
     
 
     //MARK: - Add new Challenge
     
-    @IBAction func addNewChallenge(_ sender: Any) {
+    @IBAction func saveButtonPressed(_ sender: Any) {
         let tmpChallenge = Challenge(context: self.context)
         tmpChallenge.name = nameOfTheChallenge.text!
         tmpChallenge.motivation = motivationText.text!
@@ -45,7 +46,6 @@ class createChallengeView: UIViewController {
         
         //performSegue(withIdentifier: "toChallengesView", sender: self)
         _ = navigationController?.popViewController(animated: true)
-
     }
     
     func saveItem()

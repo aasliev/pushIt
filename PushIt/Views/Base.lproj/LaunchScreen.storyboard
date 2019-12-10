@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,9 +13,55 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="P1_2" translatesAutoresizingMaskIntoConstraints="NO" id="5J2-H5-Idk">
+                                <rect key="frame" x="124" y="104" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="6P9-Wu-xVp"/>
+                                    <constraint firstAttribute="width" constant="250" id="bqM-rV-nJ4"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ush" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTL-5c-TXs">
+                                <rect key="frame" x="161.5" y="612" width="143.5" height="102.5"/>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="90"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="t" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZd-xz-d2t">
+                                <rect key="frame" x="201.5" y="719.5" width="31.5" height="102.5"/>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="90"/>
+                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="P" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ndj-Zi-jZt">
+                                <rect key="frame" x="106.5" y="612" width="55" height="102.5"/>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="90"/>
+                                <color key="textColor" red="0.0" green="0.62986588480000005" blue="0.92086750269999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyK-wf-3Ap">
+                                <rect key="frame" x="166" y="719.5" width="35.5" height="102.5"/>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="90"/>
+                                <color key="textColor" red="0.0" green="0.62986588480000005" blue="0.92086750269999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LyK-wf-3Ap" secondAttribute="bottom" constant="40" id="3d8-bQ-vk3"/>
+                            <constraint firstItem="gZd-xz-d2t" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="10" id="CBe-IE-eg9"/>
+                            <constraint firstItem="gZd-xz-d2t" firstAttribute="top" secondItem="ZTL-5c-TXs" secondAttribute="bottom" constant="5" id="P5E-Sq-O2b"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5J2-H5-Idk" secondAttribute="trailing" constant="40" id="Qw4-Ip-cwt"/>
+                            <constraint firstItem="LyK-wf-3Ap" firstAttribute="top" secondItem="Ndj-Zi-jZt" secondAttribute="bottom" constant="5" id="bF1-mA-y9Z"/>
+                            <constraint firstItem="LyK-wf-3Ap" firstAttribute="top" secondItem="ZTL-5c-TXs" secondAttribute="bottom" constant="5" id="cVi-eK-6sZ"/>
+                            <constraint firstItem="ZTL-5c-TXs" firstAttribute="leading" secondItem="Ndj-Zi-jZt" secondAttribute="trailing" id="ehs-Rx-mha"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gZd-xz-d2t" secondAttribute="bottom" constant="40" id="i9u-bh-8Lp"/>
+                            <constraint firstItem="gZd-xz-d2t" firstAttribute="leading" secondItem="LyK-wf-3Ap" secondAttribute="trailing" id="ibI-AM-BYs"/>
+                            <constraint firstItem="ZTL-5c-TXs" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="26" id="pP8-ij-On2"/>
+                            <constraint firstItem="5J2-H5-Idk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="yjw-ij-BYo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -22,4 +70,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="P1_2" width="185.5" height="183"/>
+    </resources>
 </document>

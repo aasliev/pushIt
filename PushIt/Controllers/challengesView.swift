@@ -24,6 +24,11 @@ class challengesView: UITableViewController {
         tableView.rowHeight = 80
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        loadItems()
+        tableView.reloadData()
+    }
+    
     
     //MARK: -  TableView DataSource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,16 +44,23 @@ class challengesView: UITableViewController {
     }
     
     //MARK: -  TableView Delegate Methods
-    
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-       
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "toShowView", sender: self)
-//                context.delete(itemArray[indexPath.row])
-//                itemArray.remove(at: indexPath.row)
-//        saveItems()
+        //                context.delete(itemArray[indexPath.row])
+        //                itemArray.remove(at: indexPath.row)
+        //        saveItems()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toShowView" {
+            let destinationVC = segue.destination as! showChallengesView
+            
+            if let indexPath = tableView.indexPathForSelectedRow {
+                destinationVC.selectedChallenge = itemArray[indexPath.row]
+            }
+        }
+    }
     
     
     //MARK: - Model Manipulation Methods
@@ -121,4 +133,17 @@ extension challengesView: SwipeTableViewCellDelegate{
     }
     
     
+}
+
+
+extension UIViewController {
+func hideKeyboardWhenTappedAround() {
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+    tap.cancelsTouchesInView = false
+    view.addGestureRecognizer(tap)
+}
+
+@objc func dismissKeyboard() {
+    view.endEditing(true)
+}
 }
