@@ -94,16 +94,16 @@ class createChallengeView: UIViewController, UITextViewDelegate {
 
     //MARK: - Add new Challenge
     @IBAction func CreateButtonPressed(_ sender: Any) {
-        let tmpChallenge = Challenge(context: self.context)
-        tmpChallenge.name = nameOfTheChallenge.text!
-        tmpChallenge.motivation = motivationText.text!
         let dateStart = setHMS(date: dateStarted.date)
         print(dateStart)
-        tmpChallenge.dateStart = dateStarted.date
-        print(tmpChallenge.name)
-        print(tmpChallenge.motivation)
-        print(tmpChallenge.dateStart)
-        if tmpChallenge.name != "" && tmpChallenge.motivation != "Motivation" {
+        //print(tmpChallenge.name)
+        //print(tmpChallenge.motivation)
+        //print(tmpChallenge.dateStart)
+        if nameOfTheChallenge.text != "" && motivationText.text != "Motivation" {
+            let tmpChallenge = Challenge(context: self.context)
+            tmpChallenge.name = nameOfTheChallenge.text!
+            tmpChallenge.motivation = motivationText.text!
+            tmpChallenge.dateStart = dateStarted.date
             self.saveItem()
             //performSegue(withIdentifier: "toChallengesView", sender: self)
             _ = navigationController?.popViewController(animated: true)
@@ -111,10 +111,7 @@ class createChallengeView: UIViewController, UITextViewDelegate {
         else {
             commonFunctions.createUIalert("Please fill out all the information", self)
         }
-        //self.saveItem()
         print("------------")
-        //print(dateStarted.date - date.timeIntervalSinceNow)
-        
     }
     
     
