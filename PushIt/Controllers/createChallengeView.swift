@@ -13,7 +13,7 @@ class createChallengeView: UIViewController {
    
 
     
-    
+    var calendar = Calendar.current
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     @IBOutlet weak var nameOfTheChallenge: UITextField!
@@ -29,6 +29,7 @@ class createChallengeView: UIViewController {
         //motivationText.layer.borderWidth = 1.5
         //motivationText.layer.borderColor = borderColor.cgColor
         self.hideKeyboardWhenTappedAround()
+        calendar.timeZone = TimeZone.current
     }
     
 
@@ -38,6 +39,8 @@ class createChallengeView: UIViewController {
         let tmpChallenge = Challenge(context: self.context)
         tmpChallenge.name = nameOfTheChallenge.text!
         tmpChallenge.motivation = motivationText.text!
+        let dateStart = setHMS(date: dateStarted.date)
+        print(dateStart)
         tmpChallenge.dateStart = dateStarted.date
         
         self.saveItem()
@@ -56,6 +59,13 @@ class createChallengeView: UIViewController {
             print("Error saving context \(error)")
         }
         
+    }
+    func setHMS(date : Date)->Date{
+        var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        components.hour = 0
+        components.minute = 0
+        components.second = 0
+        return calendar.date(from: components)!
     }
     
 }
