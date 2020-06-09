@@ -11,7 +11,7 @@
         <!--Challenges View-->
         <scene sceneID="XgQ-pK-spS">
             <objects>
-                <tableViewController id="3hy-rf-IFK" userLabel="Challenges View" customClass="challengesView" customModule="PushIt" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="3hy-rf-IFK" userLabel="Challenges View" customClass="challengesView" customModule="Push_It" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Bx5-aX-dhf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,81 +59,96 @@
         <!--Create Challenge-->
         <scene sceneID="ywY-KU-WaB">
             <objects>
-                <viewController id="ROw-kW-zvw" userLabel="Create Challenge" customClass="createChallengeView" customModule="PushIt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ROw-kW-zvw" userLabel="Create Challenge" customClass="createChallengeView" customModule="Push_It" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bec-xp-CV3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name it" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfX-bA-VWT">
-                                <rect key="frame" x="138" y="64" width="99" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Motivation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCx-CX-Hfd">
-                                <rect key="frame" x="119.5" y="185" width="136" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hYN-gv-uXW">
-                                <rect key="frame" x="72.5" y="110" width="230" height="30"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="fhc-Z1-pde"/>
-                                    <constraint firstAttribute="width" constant="230" id="uX6-Jp-54f"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8du-fZ-7XO">
-                                <rect key="frame" x="72.5" y="231" width="230" height="90"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="230" id="sNz-hJ-8Ot"/>
-                                    <constraint firstAttribute="height" constant="90" id="vZx-hF-iaD"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="fRN-IL-8oJ">
-                                <rect key="frame" x="0.0" y="441" width="375" height="95"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="95" id="EwD-mX-mas"/>
-                                </constraints>
-                            </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day Started" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfa-ks-pbw">
-                                <rect key="frame" x="111" y="371" width="153" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="VL0-G0-4RB">
+                                <rect key="frame" x="5" y="54" width="365" height="289"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name It" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hYN-gv-uXW">
+                                        <rect key="frame" x="0.0" y="0.0" width="365" height="93"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8du-fZ-7XO">
+                                        <rect key="frame" x="0.0" y="98" width="365" height="93"/>
+                                        <color key="backgroundColor" red="0.9488552213" green="0.94870942830000005" blue="0.96930819749999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b1J-xr-Tgj" userLabel="Date Stack View">
+                                        <rect key="frame" x="0.0" y="196" width="365" height="93"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day Started" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vj2-zX-tEG">
+                                                <rect key="frame" x="0.0" y="0.0" width="365" height="23"/>
+                                                <color key="backgroundColor" red="0.76065158840000002" green="0.76053696869999998" blue="0.77701383830000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="fRN-IL-8oJ">
+                                                <rect key="frame" x="0.0" y="23" width="365" height="70"/>
+                                                <color key="backgroundColor" red="0.9488552213" green="0.94870942830000005" blue="0.96930819749999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="8jg-g2-a0L"/>
+                                                </constraints>
+                                                <date key="minimumDate" timeIntervalSinceReferenceDate="-347115600">
+                                                    <!--1990-01-01 11:00:00 +0000-->
+                                                </date>
+                                                <date key="maximumDate" timeIntervalSinceReferenceDate="1167562800">
+                                                    <!--2037-12-31 11:00:00 +0000-->
+                                                </date>
+                                            </datePicker>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="6yW-p0-TPI" userLabel="Button Stack View">
+                                <rect key="frame" x="97.5" y="563" width="180" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXr-Aw-ZRt">
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="40"/>
+                                        <color key="backgroundColor" red="0.91764705879999997" green="0.29671401849467449" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="4gi-5g-fFW"/>
+                                            <constraint firstAttribute="width" constant="75" id="rVB-Qc-0K0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="CancelButtonPressed:" destination="ROw-kW-zvw" eventType="touchUpInside" id="wfX-S2-jcZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCB-4z-MmW">
+                                        <rect key="frame" x="105" y="0.0" width="75" height="40"/>
+                                        <color key="backgroundColor" red="0.025983933137640323" green="0.80399293948181816" blue="0.15487289197405169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Create">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="CreateButtonPressed:" destination="ROw-kW-zvw" eventType="touchUpInside" id="Mue-7X-HLO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.7803921568627451" green="0.7803921568627451" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="hYN-gv-uXW" firstAttribute="centerX" secondItem="Bec-xp-CV3" secondAttribute="centerX" id="7kd-Gd-SXL"/>
-                            <constraint firstItem="gfX-bA-VWT" firstAttribute="top" secondItem="Rkb-dq-qAC" secondAttribute="top" constant="20" id="94V-JZ-xZv"/>
-                            <constraint firstItem="fRN-IL-8oJ" firstAttribute="leading" secondItem="Rkb-dq-qAC" secondAttribute="leading" id="9pJ-89-gI3"/>
-                            <constraint firstItem="gfX-bA-VWT" firstAttribute="centerX" secondItem="Bec-xp-CV3" secondAttribute="centerX" id="Fc0-2q-qhG"/>
-                            <constraint firstItem="fRN-IL-8oJ" firstAttribute="top" secondItem="8du-fZ-7XO" secondAttribute="bottom" constant="120" id="GvO-eF-4Mv"/>
-                            <constraint firstItem="UCx-CX-Hfd" firstAttribute="top" secondItem="hYN-gv-uXW" secondAttribute="bottom" constant="45" id="Lzs-Gp-X9M"/>
-                            <constraint firstItem="8du-fZ-7XO" firstAttribute="centerX" secondItem="Bec-xp-CV3" secondAttribute="centerX" id="R4U-8j-SXv"/>
-                            <constraint firstItem="Rfa-ks-pbw" firstAttribute="centerX" secondItem="Bec-xp-CV3" secondAttribute="centerX" id="VnI-Oc-mFh"/>
-                            <constraint firstItem="8du-fZ-7XO" firstAttribute="top" secondItem="UCx-CX-Hfd" secondAttribute="bottom" constant="10" id="eg9-EA-oWe"/>
-                            <constraint firstItem="UCx-CX-Hfd" firstAttribute="centerX" secondItem="Bec-xp-CV3" secondAttribute="centerX" id="gF8-rH-vow"/>
-                            <constraint firstItem="Rfa-ks-pbw" firstAttribute="top" secondItem="8du-fZ-7XO" secondAttribute="bottom" constant="50" id="icz-Hk-sKV"/>
-                            <constraint firstItem="fRN-IL-8oJ" firstAttribute="trailing" secondItem="Rkb-dq-qAC" secondAttribute="trailing" id="loE-FA-J3s"/>
-                            <constraint firstItem="hYN-gv-uXW" firstAttribute="top" secondItem="gfX-bA-VWT" secondAttribute="bottom" constant="10" id="xPd-Tq-Bwk"/>
+                            <constraint firstItem="VL0-G0-4RB" firstAttribute="leading" secondItem="Rkb-dq-qAC" secondAttribute="leading" constant="5" id="18c-sq-WFH"/>
+                            <constraint firstItem="Rkb-dq-qAC" firstAttribute="trailing" secondItem="VL0-G0-4RB" secondAttribute="trailing" constant="5" id="UF8-lx-gyP"/>
+                            <constraint firstItem="6yW-p0-TPI" firstAttribute="centerX" secondItem="Bec-xp-CV3" secondAttribute="centerX" id="V0w-Td-R7L"/>
+                            <constraint firstItem="Rkb-dq-qAC" firstAttribute="bottom" secondItem="6yW-p0-TPI" secondAttribute="bottom" constant="15" id="WOI-tv-doh"/>
+                            <constraint firstItem="VL0-G0-4RB" firstAttribute="top" secondItem="Rkb-dq-qAC" secondAttribute="top" constant="10" id="bDE-mS-ev8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Rkb-dq-qAC"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Challenge" id="JOu-vy-MvV" userLabel="Create Challenge">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="vr9-6Q-3ea">
-                            <connections>
-                                <action selector="saveButtonPressed:" destination="ROw-kW-zvw" id="O0I-dx-93L"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Create Challenge" id="JOu-vy-MvV" userLabel="Create Challenge"/>
                     <connections>
                         <outlet property="dateStarted" destination="fRN-IL-8oJ" id="nNm-EN-9ej"/>
                         <outlet property="motivationText" destination="8du-fZ-7XO" id="10R-h9-Jkq"/>
@@ -147,7 +162,7 @@
         <!--Show Challenge-->
         <scene sceneID="dVm-Df-6tN">
             <objects>
-                <viewController id="H8T-vG-Cwb" userLabel="Show Challenge" customClass="showChallengesView" customModule="PushIt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="H8T-vG-Cwb" userLabel="Show Challenge" customClass="showChallengesView" customModule="Push_It" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Iu3-eW-aD3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
