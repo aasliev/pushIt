@@ -104,6 +104,8 @@ class createChallengeView: UIViewController, UITextViewDelegate {
             tmpChallenge.name = nameOfTheChallenge.text!
             tmpChallenge.motivation = motivationText.text!
             tmpChallenge.dateStart = dateStarted.date
+            tmpChallenge.lastDateSkipped = dateStarted.date
+            tmpChallenge.daysSkipped = 0
             self.saveItem()
             //performSegue(withIdentifier: "toChallengesView", sender: self)
             _ = navigationController?.popViewController(animated: true)
