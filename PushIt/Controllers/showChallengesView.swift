@@ -91,12 +91,18 @@ class showChallengesView: UIViewController {
     func reloadData(){
         // load motivation
          motivationText.text = selectedChallenge?.motivation
-         // set number of consecutive days...
-         let lastSkippedDay = selectedChallenge?.lastDateSkipped as! Date
-         let tmp = String(calculateNumOfDays(startDate: lastSkippedDay))
-         numOfDays.text = tmp
-        print("lastSkipped day: ", lastSkippedDay)
-        print("number: ", tmp)
+         // longest consecutive day
+        let tmpConDay = selectedChallenge?.longestConDays as! Int
+        let lastSkippedDay = selectedChallenge?.lastDateSkipped as! Date
+        let daysSinceLastSkip = String(calculateNumOfDays(startDate: lastSkippedDay))
+        print("Longest default: ", tmpConDay)
+        print("Days since last skip:", daysSinceLastSkip)
+        //if (tmpConDay < daysSinceLastSkip){
+            
+        //}
+        //numOfDays.text = tmp
+        //print("lastSkipped day: ", lastSkippedDay)
+        //print("number: ", tmp)
         
          // total days..
          let startDate = selectedChallenge?.dateStart as! Date

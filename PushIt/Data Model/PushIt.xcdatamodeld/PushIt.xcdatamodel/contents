@@ -4,10 +4,11 @@
         <attribute name="dateStart" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="daysSkipped" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="lastDateSkipped" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="longestConDays" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="motivation" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Challenge" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Challenge" positionX="-63" positionY="-18" width="128" height="133"/>
     </elements>
 </model>
