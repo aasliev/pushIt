@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-
+import UserNotifications
 class showChallengesView: UIViewController {
     var selectedChallenge : Challenge? {
         didSet{
@@ -20,7 +20,7 @@ class showChallengesView: UIViewController {
 
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var item = Challenge()
+    
     
     @IBOutlet weak var motivationText: UITextView!  //motivation text view
     @IBOutlet weak var numOfDays: UILabel!          //number of consequtive days
@@ -32,9 +32,8 @@ class showChallengesView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadData()
-        //checkDate(date: checkDate)
         self.hideKeyboardWhenTappedAround()
-        motivationText.isEditable = false
+        //motivationText.isEditable = false
     }
     
     
@@ -50,6 +49,7 @@ class showChallengesView: UIViewController {
                 self.selectedChallenge?.dateStart = self.todayDate
                 self.selectedChallenge?.lastDateSkipped = self.todayDate
                 self.selectedChallenge?.daysSkipped = 0
+                self.selectedChallenge?.longestConDays = 0
                 self.reloadData()
                 self.saveItem()
             }
@@ -63,19 +63,29 @@ class showChallengesView: UIViewController {
     @IBAction func skipButtonPressed(_ sender: Any) {
         // increment skippedDays, and set skipdate to today.
         //check if user pressed skipped today already..
-        let tmp = self.selectedChallenge?.daysSkipped as! Int32
-        if (!checkDate(date: self.selectedChallenge?.lastDateSkipped as! Date)){
-            self.selectedChallenge?.daysSkipped = tmp + 1
-            print("skipped days: ", self.selectedChallenge?.daysSkipped)
+        let alert = UIAlertController(title: "Skip", message: "Do you want to skip a day?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "No", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+        
+        let daysSkipped = self.selectedChallenge?.daysSkipped
+        let longestCon = self.selectedChallenge?.longestConDays
+            if (!self.checkDate(date: self.selectedChallenge?.lastDateSkipped as! Date)){
+            self.selectedChallenge?.daysSkipped = Double(Int(daysSkipped!) + 1)
+            self.selectedChallenge?.longestConDays = Double(Int(longestCon!) - 1)
+            //print("Inside if: (#of skipped days...", self.selectedChallenge?.daysSkipped, self.selectedChallenge?.longestConDays)
             //reload data
-            self.selectedChallenge?.lastDateSkipped = todayDate
-            reloadData()
+            self.selectedChallenge?.lastDateSkipped = self.todayDate
+            self.reloadData()
         }
         else {
             print("Error")
-            commonFunctions.createUIalert("You can only skip once a day.", self)
+            self.commonFunctions.createUIalert("You can only skip once a day.", self)
             
         }
+    }
+        ))
+        self.present(alert, animated: true, completion: nil)
+
     }
     
     
@@ -88,35 +98,33 @@ class showChallengesView: UIViewController {
         }
         
     }
+    
     func reloadData(){
         // load motivation
          motivationText.text = selectedChallenge?.motivation
-         // longest consecutive day
-        let tmpConDay = selectedChallenge?.longestConDays as! Int
-        let lastSkippedDay = selectedChallenge?.lastDateSkipped as! Date
-        let daysSinceLastSkip = String(calculateNumOfDays(startDate: lastSkippedDay))
-        print("Longest default: ", tmpConDay)
-        print("Days since last skip:", daysSinceLastSkip)
-        //if (tmpConDay < daysSinceLastSkip){
-            
-        //}
-        //numOfDays.text = tmp
-        //print("lastSkipped day: ", lastSkippedDay)
-        //print("number: ", tmp)
         
+        // longest consecutive day
+        let tmpConDay = selectedChallenge?.longestConDays
+        let lastSkippedDay = selectedChallenge?.lastDateSkipped as! Date
+        let daysSinceLastSkip = calculateNumOfDays(startDate: lastSkippedDay)
+        
+        
+        if (Int(tmpConDay!) <= daysSinceLastSkip){
+            selectedChallenge?.longestConDays = Double(daysSinceLastSkip)
+        }
+        numOfDays.text = String(Int(selectedChallenge?.longestConDays ?? 0))
          // total days..
          let startDate = selectedChallenge?.dateStart as! Date
          let total = calculateNumOfDays(startDate: startDate)
          totalDays.text = String(total)
          
          //skipped days
-         daysSkipped.text = String(selectedChallenge!.daysSkipped)
-         
+        daysSkipped.text = String(Int(selectedChallenge?.daysSkipped ?? 0))
          //days without fail: total days - skipped
-         let days_wo_fail = String(Int32(total) - (selectedChallenge!.daysSkipped))
+         let days_wo_fail = String(total - Int(selectedChallenge!.daysSkipped))
          daysWOFail.text = days_wo_fail
-         print("days without fail: ", days_wo_fail)
-        
+         //print("days without fail: ", days_wo_fail)
+        //print("before saving: ", selectedChallenge?.longestConDays)
         self.saveItem()
     }
     

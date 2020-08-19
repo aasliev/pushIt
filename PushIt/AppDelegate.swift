@@ -18,7 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        registerForPushNotifications()
+        //registerForPushNotifications()
+        
+        //un notification center
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+            self.printError(error, location: "Request Authorization Notification")
+        }
+        
         return true
     }
 
@@ -129,5 +135,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    
+    func printError(_ error:Error?, location: String){
+        if let error = error {
+            print("Error: \(error.localizedDescription) in \(location)")
+        }
+    }
 }
 

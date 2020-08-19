@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import SwipeCellKit
+import UserNotifications
 
 
 class challengesView: UITableViewController {
@@ -20,8 +21,9 @@ class challengesView: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        loadItems()
+        //loadItems()
         tableView.rowHeight = 80
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

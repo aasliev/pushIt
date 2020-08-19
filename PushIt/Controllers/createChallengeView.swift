@@ -7,11 +7,8 @@
 //
 
 import UIKit
-
+import UserNotifications
 class createChallengeView: UIViewController, UITextViewDelegate {
-    
-   
-
     
     var calendar = Calendar.current
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -40,16 +37,16 @@ class createChallengeView: UIViewController, UITextViewDelegate {
         motivationText.text = "Motivation"
         motivationText.textColor = UIColor.lightGray
 
-        motivationText.becomeFirstResponder()
-
-        motivationText.selectedTextRange = motivationText.textRange(from: motivationText.beginningOfDocument, to: motivationText.beginningOfDocument)
+        //motivationText.becomeFirstResponder()
+        //motivationText.selectedTextRange = motivationText.textRange(from: motivationText.beginningOfDocument, to: motivationText.beginningOfDocument)
     }
     // placeholder functions
     
-    func textView(_ motivationText: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    /*func textView(_ motivationText: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
 
         // Combine the textView text and the replacement text to
         // create the updated text string
+
         let currentText:String = motivationText.text
         let updatedText = (currentText as NSString).replacingCharacters(in: range, with: text)
 
@@ -70,6 +67,8 @@ class createChallengeView: UIViewController, UITextViewDelegate {
          else if motivationText.textColor == UIColor.lightGray && !text.isEmpty {
             motivationText.textColor = UIColor.black
             motivationText.text = text
+            // fix capitalization problem...
+            
         }
 
         // For every other case, the text should change with the usual
@@ -83,6 +82,8 @@ class createChallengeView: UIViewController, UITextViewDelegate {
         return false
     }
     
+ 
+    
     func textViewDidChangeSelection(_ motivationText: UITextView) {
         if self.view.window != nil {
             if motivationText.textColor == UIColor.lightGray {
@@ -91,6 +92,27 @@ class createChallengeView: UIViewController, UITextViewDelegate {
         }
     }
 
+*/
+    
+    func textViewDidBeginEditing(_ motivationText: UITextView)
+    {
+        if (motivationText.text == "Motivation" && motivationText.textColor == .lightGray)
+        {
+            motivationText.text = ""
+            motivationText.textColor = .black
+        }
+        motivationText.becomeFirstResponder() //Optional
+    }
+
+    func textViewDidEndEditing(_ motivationText: UITextView)
+    {
+        if (motivationText.text == "")
+        {
+            motivationText.text = "Motivation"
+            motivationText.textColor = .lightGray
+        }
+        motivationText.resignFirstResponder()
+    }
 
     //MARK: - Add new Challenge
     @IBAction func CreateButtonPressed(_ sender: Any) {
