@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
-    
+    /*
     //push notifications functions....
     
     func registerForPushNotifications() {
@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       didFailToRegisterForRemoteNotificationsWithError error: Error) {
       print("Failed to register: \(error)")
     }
-
+*/
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {

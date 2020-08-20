@@ -13,7 +13,7 @@ class createChallengeView: UIViewController, UITextViewDelegate {
     var calendar = Calendar.current
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let commonFunctions = CommonFunctions.sharedCommonFunction
-
+    let notifications = notificationsFunctions()
     @IBOutlet weak var nameOfTheChallenge: UITextField!
     @IBOutlet weak var motivationText: UITextView!
     @IBOutlet weak var dateStarted: UIDatePicker!
@@ -135,7 +135,18 @@ class createChallengeView: UIViewController, UITextViewDelegate {
         else {
             commonFunctions.createUIalert("Please fill out all the information", self)
         }
-        print("------------")
+        
+        // daily 8:00 am and 8:00 pm notifications..
+        var timeComponent = Calendar.current.dateComponents([.hour, .minute, .second], from: Date())
+        timeComponent.hour = 8
+        timeComponent.minute = 0
+        timeComponent.second = 0
+        notifications.dailyNotification(title: "Don't forget your habits today!", body: "Keep pushing your comfort zone boundaries.", time: timeComponent, identifier: "mornign")
+        timeComponent.hour = 20
+        timeComponent.minute = 0
+        timeComponent.second = 0
+        notifications.dailyNotification(title: "How was your day?", body: "Don't forget to evaluate your day before going to sleep.", time: timeComponent, identifier: "night")
+        
     }
     
     
