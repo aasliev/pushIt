@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		3657102024A265D100E03ECD /* NotificationFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3657101F24A265D100E03ECD /* NotificationFunctions.swift */; };
 		368DADEC24EF1EF00065C529 /* SingIn:SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 368DADEB24EF1EF00065C529 /* SingIn:SignUp.storyboard */; };
+		368DADF124F035B40065C529 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368DADF024F035B40065C529 /* SignInViewController.swift */; };
+		368DADF324F035D60065C529 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368DADF224F035D60065C529 /* SignUpViewController.swift */; };
+		368DADF524F035E90065C529 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368DADF424F035E90065C529 /* ForgotPasswordViewController.swift */; };
+		368DADF924F0407B0065C529 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 368DADF824F0407B0065C529 /* GoogleService-Info.plist */; };
+		368DADFB24F0A5DA0065C529 /* FirebaseDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368DADFA24F0A5DA0065C529 /* FirebaseDatabase.swift */; };
+		368DADFD24F0A5ED0065C529 /* CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368DADFC24F0A5ED0065C529 /* CoreDataClass.swift */; };
+		368DADFF24F0A6040065C529 /* FirebaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368DADFE24F0A6040065C529 /* FirebaseAuth.swift */; };
+		368DAE0124F0A9E30065C529 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368DAE0024F0A9E30065C529 /* LaunchScreenViewController.swift */; };
 		36CCBFA2248FFA5200FBB69D /* CommonFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCBFA1248FFA5200FBB69D /* CommonFunctions.swift */; };
 		36CF1AA023746BF9000C6E7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CF1A9F23746BF9000C6E7B /* AppDelegate.swift */; };
 		36CF1AA523746BF9000C6E7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36CF1AA323746BF9000C6E7B /* Main.storyboard */; };
@@ -26,6 +34,14 @@
 		3657101F24A265D100E03ECD /* NotificationFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFunctions.swift; sourceTree = "<group>"; };
 		365ECABC23CA2CE3003619CC /* Push It.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Push It.entitlements"; sourceTree = "<group>"; };
 		368DADEB24EF1EF00065C529 /* SingIn:SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "SingIn:SignUp.storyboard"; sourceTree = "<group>"; };
+		368DADF024F035B40065C529 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		368DADF224F035D60065C529 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		368DADF424F035E90065C529 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		368DADF824F0407B0065C529 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		368DADFA24F0A5DA0065C529 /* FirebaseDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabase.swift; sourceTree = "<group>"; };
+		368DADFC24F0A5ED0065C529 /* CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClass.swift; sourceTree = "<group>"; };
+		368DADFE24F0A6040065C529 /* FirebaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuth.swift; sourceTree = "<group>"; };
+		368DAE0024F0A9E30065C529 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		36CCBFA1248FFA5200FBB69D /* CommonFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFunctions.swift; sourceTree = "<group>"; };
 		36CF1A9C23746BF9000C6E7B /* Push It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Push It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36CF1A9F23746BF9000C6E7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,18 +88,25 @@
 			path = "Challenge Views";
 			sourceTree = "<group>";
 		};
-		368DADEE24F034E10065C529 /* Additional Functions */ = {
+		368DADEE24F034E10065C529 /* Supporting Classes */ = {
 			isa = PBXGroup;
 			children = (
 				36CCBFA1248FFA5200FBB69D /* CommonFunctions.swift */,
 				3657101F24A265D100E03ECD /* NotificationFunctions.swift */,
+				368DADFA24F0A5DA0065C529 /* FirebaseDatabase.swift */,
+				368DADFC24F0A5ED0065C529 /* CoreDataClass.swift */,
+				368DADFE24F0A6040065C529 /* FirebaseAuth.swift */,
 			);
-			path = "Additional Functions";
+			path = "Supporting Classes";
 			sourceTree = "<group>";
 		};
 		368DADEF24F035440065C529 /* SignIN-SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				368DADF024F035B40065C529 /* SignInViewController.swift */,
+				368DADF224F035D60065C529 /* SignUpViewController.swift */,
+				368DADF424F035E90065C529 /* ForgotPasswordViewController.swift */,
+				368DAE0024F0A9E30065C529 /* LaunchScreenViewController.swift */,
 			);
 			path = "SignIN-SignUp";
 			sourceTree = "<group>";
@@ -115,6 +138,7 @@
 				36CF1AB52374CD4F000C6E7B /* Controllers */,
 				36CF1AB42374CD40000C6E7B /* Views */,
 				36CF1AA923746BFB000C6E7B /* Assets.xcassets */,
+				368DADF824F0407B0065C529 /* GoogleService-Info.plist */,
 				36CF1AAE23746BFB000C6E7B /* Info.plist */,
 			);
 			path = PushIt;
@@ -133,8 +157,8 @@
 		36CF1AB52374CD4F000C6E7B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				368DADEE24F034E10065C529 /* Supporting Classes */,
 				368DADEF24F035440065C529 /* SignIN-SignUp */,
-				368DADEE24F034E10065C529 /* Additional Functions */,
 				368DADED24F034C40065C529 /* Challenge Views */,
 			);
 			path = Controllers;
@@ -218,6 +242,7 @@
 			files = (
 				36CF1AAD23746BFB000C6E7B /* LaunchScreen.storyboard in Resources */,
 				36CF1AAA23746BFB000C6E7B /* Assets.xcassets in Resources */,
+				368DADF924F0407B0065C529 /* GoogleService-Info.plist in Resources */,
 				36CF1AA523746BF9000C6E7B /* Main.storyboard in Resources */,
 				368DADEC24EF1EF00065C529 /* SingIn:SignUp.storyboard in Resources */,
 			);
@@ -275,8 +300,15 @@
 				36CCBFA2248FFA5200FBB69D /* CommonFunctions.swift in Sources */,
 				36CF1AA023746BF9000C6E7B /* AppDelegate.swift in Sources */,
 				36CF1ABD2374CE1B000C6E7B /* showChallengesView.swift in Sources */,
+				368DADFD24F0A5ED0065C529 /* CoreDataClass.swift in Sources */,
 				36CF1AA823746BF9000C6E7B /* PushIt.xcdatamodeld in Sources */,
+				368DADFB24F0A5DA0065C529 /* FirebaseDatabase.swift in Sources */,
+				368DAE0124F0A9E30065C529 /* LaunchScreenViewController.swift in Sources */,
+				368DADFF24F0A6040065C529 /* FirebaseAuth.swift in Sources */,
+				368DADF124F035B40065C529 /* SignInViewController.swift in Sources */,
 				3657102024A265D100E03ECD /* NotificationFunctions.swift in Sources */,
+				368DADF524F035E90065C529 /* ForgotPasswordViewController.swift in Sources */,
+				368DADF324F035D60065C529 /* SignUpViewController.swift in Sources */,
 				36CF1ABB2374CDF6000C6E7B /* createChallengeView.swift in Sources */,
 				36CF1AB92374CDCB000C6E7B /* challengesView.swift in Sources */,
 			);
