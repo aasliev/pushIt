@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3657102024A265D100E03ECD /* NotificationFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3657101F24A265D100E03ECD /* NotificationFunctions.swift */; };
-		368DADEC24EF1EF00065C529 /* SingIn:SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 368DADEB24EF1EF00065C529 /* SingIn:SignUp.storyboard */; };
+		368DADEC24EF1EF00065C529 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 368DADEB24EF1EF00065C529 /* SignIn.storyboard */; };
 		368DADF124F035B40065C529 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368DADF024F035B40065C529 /* SignInViewController.swift */; };
 		368DADF324F035D60065C529 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368DADF224F035D60065C529 /* SignUpViewController.swift */; };
 		368DADF524F035E90065C529 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368DADF424F035E90065C529 /* ForgotPasswordViewController.swift */; };
@@ -26,6 +26,7 @@
 		36CF1AB92374CDCB000C6E7B /* challengesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CF1AB82374CDCB000C6E7B /* challengesView.swift */; };
 		36CF1ABB2374CDF6000C6E7B /* createChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CF1ABA2374CDF6000C6E7B /* createChallengeView.swift */; };
 		36CF1ABD2374CE1B000C6E7B /* showChallengesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CF1ABC2374CE1B000C6E7B /* showChallengesView.swift */; };
+		36EEDB8D24F2AF2B00CD240A /* SVProgressHUDClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EEDB8C24F2AF2B00CD240A /* SVProgressHUDClass.swift */; };
 		EC8360170689A238BAD3EE2C /* Pods_PushIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6EEB43BB95F6B7781166E15 /* Pods_PushIt.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +34,7 @@
 		0CEFCD4FFFF63B794D3F5EBD /* Pods-PushIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PushIt.debug.xcconfig"; path = "Target Support Files/Pods-PushIt/Pods-PushIt.debug.xcconfig"; sourceTree = "<group>"; };
 		3657101F24A265D100E03ECD /* NotificationFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFunctions.swift; sourceTree = "<group>"; };
 		365ECABC23CA2CE3003619CC /* Push It.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Push It.entitlements"; sourceTree = "<group>"; };
-		368DADEB24EF1EF00065C529 /* SingIn:SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "SingIn:SignUp.storyboard"; sourceTree = "<group>"; };
+		368DADEB24EF1EF00065C529 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		368DADF024F035B40065C529 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		368DADF224F035D60065C529 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		368DADF424F035E90065C529 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +54,7 @@
 		36CF1AB82374CDCB000C6E7B /* challengesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = challengesView.swift; sourceTree = "<group>"; };
 		36CF1ABA2374CDF6000C6E7B /* createChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createChallengeView.swift; sourceTree = "<group>"; };
 		36CF1ABC2374CE1B000C6E7B /* showChallengesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showChallengesView.swift; sourceTree = "<group>"; };
+		36EEDB8C24F2AF2B00CD240A /* SVProgressHUDClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVProgressHUDClass.swift; sourceTree = "<group>"; };
 		DDEF64CFA625B7CB15D1FB70 /* Pods-PushIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PushIt.release.xcconfig"; path = "Target Support Files/Pods-PushIt/Pods-PushIt.release.xcconfig"; sourceTree = "<group>"; };
 		E6EEB43BB95F6B7781166E15 /* Pods_PushIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PushIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -96,6 +98,7 @@
 				368DADFA24F0A5DA0065C529 /* FirebaseDatabase.swift */,
 				368DADFC24F0A5ED0065C529 /* CoreDataClass.swift */,
 				368DADFE24F0A6040065C529 /* FirebaseAuth.swift */,
+				36EEDB8C24F2AF2B00CD240A /* SVProgressHUDClass.swift */,
 			);
 			path = "Supporting Classes";
 			sourceTree = "<group>";
@@ -149,7 +152,7 @@
 			children = (
 				36CF1AAB23746BFB000C6E7B /* LaunchScreen.storyboard */,
 				36CF1AA323746BF9000C6E7B /* Main.storyboard */,
-				368DADEB24EF1EF00065C529 /* SingIn:SignUp.storyboard */,
+				368DADEB24EF1EF00065C529 /* SignIn.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -244,7 +247,7 @@
 				36CF1AAA23746BFB000C6E7B /* Assets.xcassets in Resources */,
 				368DADF924F0407B0065C529 /* GoogleService-Info.plist in Resources */,
 				36CF1AA523746BF9000C6E7B /* Main.storyboard in Resources */,
-				368DADEC24EF1EF00065C529 /* SingIn:SignUp.storyboard in Resources */,
+				368DADEC24EF1EF00065C529 /* SignIn.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +313,7 @@
 				368DADF524F035E90065C529 /* ForgotPasswordViewController.swift in Sources */,
 				368DADF324F035D60065C529 /* SignUpViewController.swift in Sources */,
 				36CF1ABB2374CDF6000C6E7B /* createChallengeView.swift in Sources */,
+				36EEDB8D24F2AF2B00CD240A /* SVProgressHUDClass.swift in Sources */,
 				36CF1AB92374CDCB000C6E7B /* challengesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

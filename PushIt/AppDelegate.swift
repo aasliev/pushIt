@@ -15,20 +15,43 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    let logInStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
 
+    
+    func applicationDidFinishLaunching(_ application: UIApplication){
+        // auto-sign in method
+        let user = Auth.auth().currentUser
+        if user != nil {
+            // User is signed in.
+            print("Automatic Sign In: \(String(describing: user?.email))")
+            let initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "ChallengesView")
 
+            self.window!.rootViewController = initialViewController
+
+        } else {
+            // No user is signed in.
+            let initialViewController = logInStoryboard.instantiateViewController(withIdentifier: "SignInScreen")
+            self.window!.rootViewController = initialViewController
+
+        }
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        //registerForPushNotifications()
-        //
-        
         //initialize Firebase
         FirebaseApp.configure()
+        self.applicationDidFinishLaunching(application)
+
         //un notification center
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
             self.printError(error, location: "Request Authorization Notification")
         }
+        //registerForPushNotifications()
+        //
+        // autoSign in
+        self.applicationDidFinishLaunching(application)
         
+        //print("\n\ninside app delegate\n\n")
         return true
     }
 

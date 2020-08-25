@@ -10,9 +10,18 @@ import UIKit
 import CoreData
 import SwipeCellKit
 import UserNotifications
+import Firebase
 
 
 class challengesView: UITableViewController {
+    
+    // instance of other classes
+    //let firebaseAuth = Auth.auth()
+    //let databaseIstance = FirebaseDatabase.shared
+    //let authInstance = FirebaseAuth.sharedFirebaseAuth
+    //let coreDataInstance = CoreDataClass.sharedCoreData
+    let progressBarInstance = SVProgressHUDClass.shared
+    
 
     var itemArray = [Challenge]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -86,6 +95,47 @@ class challengesView: UITableViewController {
         }
         
     }
+    
+    // MARK: - log out function (for now, later it will be view profile)
+    
+    @IBAction func profileButtonPressed(_ sender: Any) {
+        // log out and go to log in page
+        let alert : UIAlertController
+        alert = UIAlertController(title: "Sing out", message: "Do you want to sign out?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "No", style: .cancel))
+        
+        //If user press 'yes', perform following functions
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            
+           //this is for user on his/her profile screen.  This if function perform sign out procces
+            self.performSignOut()
+            
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    //MARK: Perform Sign Out
+    func performSignOut () {
+        self.progressBarInstance.displayProgressBar()
+        //This function call sign out user from Firebase Auth
+        FirebaseAuth.sharedFirebaseAuth.signOutCurrentUser()
+        
+        //self.coreDataInstance.resetAllEntities()
+        
+        self.navigationController?.navigationBar.isHidden = true;
+        
+        
+        // get a reference to the app delegate
+        let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
+        
+        // call didFinishLaunchWithOptions, this will make HomeScreen as Root ViewController
+        //Take user to Home Screen (Log In Screen), where user can log in.
+        appDelegate?.applicationDidFinishLaunching(UIApplication.shared)
+        self.progressBarInstance.dismissProgressBar()
+    }
+    
     
 }
 

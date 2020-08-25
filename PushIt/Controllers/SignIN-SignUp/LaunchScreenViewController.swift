@@ -11,13 +11,16 @@ import Firebase
 
 class LaunchScreenViewController: UINavigationController {
 
-    var window: UIWindow?
+    /*
+    
+    //var window: UIWindow?
     //let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
     //let signInStoryBoard = UIStoryboard(name: "SignIn:SignUp", bundle: nil)
-    let user = Auth.auth().currentUser
+    //let user = Auth.auth().currentUser
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("\n\ninside launch screen \n\n")
+        let user = Auth.auth().currentUser
         // Do any additional setup after loading the view.
         // if user is logged in go to
         if user != nil {
@@ -26,7 +29,7 @@ class LaunchScreenViewController: UINavigationController {
             //let initialViewController = mainStoryBoard.instantiateViewController(withIdentifier: "ChallengesView")
 
             //self.window!.rootViewController = initialViewController
-
+            performSegue(withIdentifier: "toChallenges", sender: self)
         } else {
             // No user is signed in.
             //let initialViewController = signInStoryBoard.instantiateViewController(withIdentifier: "SignInView")
@@ -52,5 +55,5 @@ class LaunchScreenViewController: UINavigationController {
         // Pass the selected object to the new view controller.
     }
     */
-
+*/
 }

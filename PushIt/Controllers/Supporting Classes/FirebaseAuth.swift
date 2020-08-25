@@ -68,4 +68,23 @@ class FirebaseAuth {
         
     }
     
+    //This method sends email to reqested email address
+    func resetPassword(email: String, viewController: UIViewController, completion: @escaping (Bool)->()) {
+        authInstance.sendPasswordReset(withEmail: email) { (error) in
+            
+            //checks if email id exist into Firebase Auth
+            if (error != nil) {
+                if let errorMsg = AuthErrorCode(rawValue: error!._code){
+                    
+                    //Method inside additionalFunction class shows error
+                    self.commonFunctions.showError(error: error, errorMsg: errorMsg, screen: viewController)
+                }
+                completion(false)
+            }
+            completion(true)
+        }
+    }
+    
+    
 }
+

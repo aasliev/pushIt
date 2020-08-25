@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import UserNotifications
+import Firebase
 class CommonFunctions {
     
     static let sharedCommonFunction = CommonFunctions()
@@ -25,10 +26,10 @@ class CommonFunctions {
     }
     
     // check if textField is empty
-    func checkIfEmpty(_ textField: UITextField,_ paceholderText: String, screen: UIViewController) -> Bool{
+    func checkIfEmpty(_ textField: UITextField,_ placeholderText: String, screen: UIViewController) -> Bool{
         if textField.text!.isEmpty {
             //Making changes to inform user that text field is empty
-            textField.attributedPlaceholder = NSAttributedString(string: paceholderText,
+            textField.attributedPlaceholder = NSAttributedString(string: placeholderText,
                                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
             createUIalert("Add missing information.", screen)
             
@@ -38,13 +39,13 @@ class CommonFunctions {
         }else{
             
             // Revert the changes made in if statment
-            textField.backgroundColor = UIColor.black
+            //textField.backgroundColor = UIColor.white
+            textField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
             return true
             
         }
     }
     
-    /*
     func showError(error: Error?,errorMsg: AuthErrorCode,screen: UIViewController) {
         
         switch errorMsg {
@@ -73,5 +74,8 @@ class CommonFunctions {
         default:
             createUIalert("Error occured. Please try again.", screen)
         }
-    }*/
+    }
 }
+
+
+

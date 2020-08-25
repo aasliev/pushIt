@@ -347,6 +347,7 @@ PODS:
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.10)
   - Protobuf (3.13.0)
+  - SVProgressHUD (2.2.5)
   - SwipeCellKit (2.5.4)
 
 DEPENDENCIES:
@@ -355,6 +356,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Firestore
   - Firebase/Messaging
+  - SVProgressHUD
   - SwipeCellKit (= 2.5.4)
 
 SPEC REPOS:
@@ -380,6 +382,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - Protobuf
+    - SVProgressHUD
     - SwipeCellKit
 
 SPEC CHECKSUMS:
@@ -404,8 +407,9 @@ SPEC CHECKSUMS:
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwipeCellKit: 4eada3884ab1bbae5e8d2fb9030c242aa23d7f42
 
-PODFILE CHECKSUM: ebb15f69d8540ac023da457b107bb422176d157a
+PODFILE CHECKSUM: f7f89d5eacb0c728c53535fa49f2391d4ad785be
 
 COCOAPODS: 1.9.3

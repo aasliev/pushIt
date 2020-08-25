@@ -41,6 +41,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Challenges" id="Jmo-Gk-joh">
+                        <barButtonItem key="leftBarButtonItem" image="person" catalog="system" id="iJ0-Xw-9GJ">
+                            <connections>
+                                <action selector="profileButtonPressed:" destination="3hy-rf-IFK" id="6U0-ic-a8O"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Q9W-S7-lbN">
                             <connections>
                                 <segue destination="ROw-kW-zvw" kind="show" identifier="toCreateChallenge" id="Dek-vy-OfZ"/>
@@ -370,11 +375,12 @@
             </objects>
             <point key="canvasLocation" x="2927.1999999999998" y="820.83958020989508"/>
         </scene>
-        <!--Launch Screen View Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="hEp-zd-hqK">
             <objects>
-                <navigationController storyboardIdentifier="ChallengesView" automaticallyAdjustsScrollViewInsets="NO" id="RyZ-M2-6uk" customClass="LaunchScreenViewController" customModule="Push_It" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ChallengesView" automaticallyAdjustsScrollViewInsets="NO" id="RyZ-M2-6uk" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Lsa-7M-ALs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ebo-Ak-4OG">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -388,22 +394,14 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="3hy-rf-IFK" kind="relationship" relationship="rootViewController" id="C4T-7A-x1w"/>
-                        <segue destination="WPO-8B-cZs" kind="show" identifier="toSignInView" id="SqS-cO-7i3"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uPH-zv-jRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="940" y="314"/>
         </scene>
-        <!--SignInScreen-->
-        <scene sceneID="poY-32-1Qu">
-            <objects>
-                <viewControllerPlaceholder storyboardName="SingIn:SignUp" referencedIdentifier="SignInScreen" id="WPO-8B-cZs" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="qaq-WR-4gC"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vrI-aB-Tk5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="922" y="842"/>
-        </scene>
     </scenes>
+    <resources>
+        <image name="person" catalog="system" width="128" height="117"/>
+    </resources>
 </document>
