@@ -128,7 +128,26 @@ class FirebaseDatabase {
     
     
     //MARK: - Delete from Firestore
+     
+    // method to delete a field
+    private func deleteDocument(documentPath: String, documentName: String){
+        db.collection(documentPath).document(documentName).delete()
+    }
     
+    // remove challenge from challenge_sub_colection
+    // users/userEmail/challenge-sub-collection/challengeName
+    func removeChallenge(challengeName: String){
+        let path = "\(USERS_MAIN_COLLECTION)/\(authInstance.getCurrentUserEmail())/\(CHALLENGES_SUB_COLLECTION)"
+        self.deleteDocument(documentPath: path, documentName: challengeName)
+        self.changeNumberOfChallenges(usersEmail: authInstance.getCurrentUserEmail(), by: -1)
+    }
+    
+    //remove friends from friend_sub_collection
+    // users/userEmail/friend_subcollection/friendsEmail
+    func removeFriend(friendEmail: String){
+        let path = "\(USERS_MAIN_COLLECTION)/\(authInstance.getCurrentUserEmail())/\(FRIENDS_SUB_COLLECTION))"
+        self.deleteDocument(documentPath: path, documentName: friendEmail)
+    }
     
     // Increment-Decrement Number of challenges
     func changeNumberOfChallenges(usersEmail: String, by: Int){
@@ -138,13 +157,6 @@ class FirebaseDatabase {
             self.NUMBER_OF_CHALLENGES: FieldValue.increment(Int64(by))
         ])
     }
-    
-    
-    
-    
-    
-    
-    
     
     
     //MARK: Error
