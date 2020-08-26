@@ -13,8 +13,11 @@ class SignUpViewController: UIViewController {
     
     let commonFunctions = CommonFunctions.sharedCommonFunction
     let progressBarInstance = SVProgressHUDClass.shared
-    //let databaseInstance = FirebaseDatabase.shared
+    let databaseInstance = FirebaseDatabase.shared
     let authInstance = FirebaseAuth.sharedFirebaseAuth
+
+    var userNameAdded = false
+    var dataAddedIntoFirestore = false
 
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -53,8 +56,8 @@ class SignUpViewController: UIViewController {
             if let errorMsg = AuthErrorCode(rawValue: (error! as AnyObject).code){
                 self.commonFunctions.showError(error: error, errorMsg: errorMsg, screen: self)
             }
-        } /*else {
-            self.databaseInstance.addNewUserToFirestore( userName: self.userNameTextField.text!, email: self.emailTextField.text!){ boolean in
+        } else {
+            self.databaseInstance.addNewUserToFirestore(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!, email: self.emailTextField.text!){ boolean in
                 
                 print("Completion called from firestore \(boolean)")
                 if boolean {
@@ -72,15 +75,15 @@ class SignUpViewController: UIViewController {
                     }
                 }
                 }
-            addUserNameAndPerformSegue()
-        } */
-        else {
+            //addUserNameAndPerformSegue()
+       // }
+        //else {
         // get a reference to the app delegate
         let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
         
         // call didFinishLaunchWithOptions, this will make HomeScreen as Root ViewController
         //Take user to Home Screen (Log In Screen), where user can log in.
-            appDelegate?.applicationDidFinishLaunching(UIApplication.shared) }
+        appDelegate?.applicationDidFinishLaunching(UIApplication.shared) }
     }
     
 
