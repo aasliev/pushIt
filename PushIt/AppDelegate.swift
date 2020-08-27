@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //initialize Firebase
-        FirebaseApp.configure()
+        //FirebaseApp.configure()
         self.applicationDidFinishLaunching(application)
 
         //un notification center

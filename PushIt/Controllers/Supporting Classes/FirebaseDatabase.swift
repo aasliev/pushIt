@@ -11,7 +11,7 @@ import Firebase
 class FirebaseDatabase {
 
     //MARK: Firestore Database Istance
-    //let config = FirebaseApp.configure()
+    let config = FirebaseApp.configure()
     let db : Firestore
     let authInstance : FirebaseAuth
 

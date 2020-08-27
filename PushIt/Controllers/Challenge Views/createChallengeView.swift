@@ -11,22 +11,24 @@ import UserNotifications
 class createChallengeView: UIViewController, UITextViewDelegate {
     
     var calendar = Calendar.current
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    //let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    //instances of shared classes
     let commonFunctions = CommonFunctions.sharedCommonFunction
+    let coreDataShared = CoreDataClass.sharedCoreData
+    let firebaseDatabase = FirebaseDatabase.shared
+    //let firebaseAuth = FirebaseAuth.sharedFirebaseAuth
     let notifications = notificationsFunctions()
+    
+    // users data
     @IBOutlet weak var nameOfTheChallenge: UITextField!
     @IBOutlet weak var motivationText: UITextView!
     @IBOutlet weak var dateStarted: UIDatePicker!
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        //let borderColor : UIColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-        //motivationText.layer.borderWidth = 1.5
-        //motivationText.layer.borderColor = borderColor.cgColor
         self.hideKeyboardWhenTappedAround()
         calendar.timeZone = TimeZone.current
         self.navigationItem.hidesBackButton = true
@@ -37,62 +39,8 @@ class createChallengeView: UIViewController, UITextViewDelegate {
         motivationText.text = "Motivation"
         motivationText.textColor = UIColor.lightGray
 
-        //motivationText.becomeFirstResponder()
-        //motivationText.selectedTextRange = motivationText.textRange(from: motivationText.beginningOfDocument, to: motivationText.beginningOfDocument)
-    }
+        }
     // placeholder functions
-    
-    /*func textView(_ motivationText: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-
-        // Combine the textView text and the replacement text to
-        // create the updated text string
-
-        let currentText:String = motivationText.text
-        let updatedText = (currentText as NSString).replacingCharacters(in: range, with: text)
-
-        // If updated text view will be empty, add the placeholder
-        // and set the cursor to the beginning of the text view
-        if updatedText.isEmpty {
-
-            motivationText.text = "Motivation"
-            motivationText.textColor = UIColor.lightGray
-
-            motivationText.selectedTextRange = motivationText.textRange(from: motivationText.beginningOfDocument, to: motivationText.beginningOfDocument)
-        }
-
-        // Else if the text view's placeholder is showing and the
-        // length of the replacement string is greater than 0, set
-        // the text color to black then set its text to the
-        // replacement string
-         else if motivationText.textColor == UIColor.lightGray && !text.isEmpty {
-            motivationText.textColor = UIColor.black
-            motivationText.text = text
-            // fix capitalization problem...
-            
-        }
-
-        // For every other case, the text should change with the usual
-        // behavior...
-        else {
-            return true
-        }
-
-        // ...otherwise return false since the updates have already
-        // been made
-        return false
-    }
-    
- 
-    
-    func textViewDidChangeSelection(_ motivationText: UITextView) {
-        if self.view.window != nil {
-            if motivationText.textColor == UIColor.lightGray {
-                motivationText.selectedTextRange = motivationText.textRange(from: motivationText.beginningOfDocument, to: motivationText.beginningOfDocument)
-            }
-        }
-    }
-
-*/
     
     func textViewDidBeginEditing(_ motivationText: UITextView)
     {
@@ -116,19 +64,16 @@ class createChallengeView: UIViewController, UITextViewDelegate {
 
     //MARK: - Add new Challenge
     @IBAction func CreateButtonPressed(_ sender: Any) {
-        let dateStart = setHMS(date: dateStarted.date)
-        print(dateStart)
-        //print(tmpChallenge.name)
-        //print(tmpChallenge.motivation)
-        //print(tmpChallenge.dateStart)
-        if nameOfTheChallenge.text != "" && motivationText.text != "Motivation" {
-            let tmpChallenge = Challenge(context: self.context)
+        
+        if self.checkIfTextFieldIsEmpty() && motivationText.text != "Motivation" {
+            let tmpChallenge = Challenge(context: self.coreDataShared.getContext())
             tmpChallenge.name = nameOfTheChallenge.text!
             tmpChallenge.motivation = motivationText.text!
             tmpChallenge.dateStart = dateStarted.date
             tmpChallenge.lastDateSkipped = dateStarted.date
             tmpChallenge.daysSkipped = 0
-            self.saveItem()
+            coreDataShared.saveItems()
+            //self.saveItem()
             //performSegue(withIdentifier: "toChallengesView", sender: self)
             _ = navigationController?.popViewController(animated: true)
         }
@@ -164,22 +109,9 @@ class createChallengeView: UIViewController, UITextViewDelegate {
 
     }
     
-    
-    func saveItem()
-    {
-        do {
-            try context.save()
-        } catch {
-            print("Error saving context \(error)")
-        }
-        
+    // check if user entered data
+    func checkIfTextFieldIsEmpty() -> Bool {
+        let challengeName = commonFunctions.checkIfEmpty(nameOfTheChallenge, "Name It", screen: self)
+        return challengeName
     }
-    func setHMS(date : Date)->Date{
-        var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-        components.hour = 0
-        components.minute = 0
-        components.second = 0
-        return calendar.date(from: components)!
-    }
-    
 }

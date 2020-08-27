@@ -17,6 +17,7 @@ class showChallengesView: UIViewController {
     }
     let todayDate = Date()
     let commonFunctions = CommonFunctions.sharedCommonFunction
+    let coreDataClassShare = CoreDataClass.sharedCoreData
     let notifications = notificationsFunctions()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -63,7 +64,8 @@ class showChallengesView: UIViewController {
                 self.selectedChallenge?.daysSkipped = 0
                 self.selectedChallenge?.longestConDays = 0
                 self.reloadData()
-                self.saveItem()
+                self.coreDataClassShare.saveItems()
+                //self.saveItem()
             }
             
         }))
@@ -101,16 +103,7 @@ class showChallengesView: UIViewController {
     }
     
     
-    func saveItem()
-    {
-        do {
-            try context.save()
-        } catch {
-            print("Error saving context \(error)")
-        }
-        
-    }
-    
+   
     func reloadData(){
         // load motivation
          motivationText.text = selectedChallenge?.motivation
@@ -137,7 +130,7 @@ class showChallengesView: UIViewController {
          daysWOFail.text = days_wo_fail
          //print("days without fail: ", days_wo_fail)
         //print("before saving: ", selectedChallenge?.longestConDays)
-        self.saveItem()
+        //self.saveItem()
     }
     
 

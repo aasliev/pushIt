@@ -41,7 +41,7 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Challenges" id="Jmo-Gk-joh">
-                        <barButtonItem key="leftBarButtonItem" image="person" catalog="system" id="iJ0-Xw-9GJ">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" image="arrow.left" catalog="system" id="iJ0-Xw-9GJ">
                             <connections>
                                 <action selector="profileButtonPressed:" destination="3hy-rf-IFK" id="6U0-ic-a8O"/>
                             </connections>
@@ -402,6 +402,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="person" catalog="system" width="128" height="117"/>
+        <image name="arrow.left" catalog="system" width="128" height="98"/>
     </resources>
 </document>

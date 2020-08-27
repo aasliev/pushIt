@@ -21,7 +21,7 @@ class challengesView: UITableViewController {
     //let authInstance = FirebaseAuth.sharedFirebaseAuth
     //let coreDataInstance = CoreDataClass.sharedCoreData
     let progressBarInstance = SVProgressHUDClass.shared
-    
+    let coreDataClassShared = CoreDataClass.sharedCoreData
 
     var itemArray = [Challenge]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -32,7 +32,6 @@ class challengesView: UITableViewController {
         //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         //loadItems()
         tableView.rowHeight = 80
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -121,15 +120,10 @@ class challengesView: UITableViewController {
         self.progressBarInstance.displayProgressBar()
         //This function call sign out user from Firebase Auth
         FirebaseAuth.sharedFirebaseAuth.signOutCurrentUser()
-        
         //self.coreDataInstance.resetAllEntities()
-        
         self.navigationController?.navigationBar.isHidden = true;
-        
-        
         // get a reference to the app delegate
         let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
-        
         // call didFinishLaunchWithOptions, this will make HomeScreen as Root ViewController
         //Take user to Home Screen (Log In Screen), where user can log in.
         appDelegate?.applicationDidFinishLaunching(UIApplication.shared)
@@ -175,7 +169,9 @@ extension challengesView: SwipeTableViewCellDelegate{
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
                 self.context.delete(self.itemArray[indexPath.row])
                 self.itemArray.remove(at: indexPath.row)
-                self.saveItems()
+                self.coreDataClassShared.saveItems()
+                self.tableView.reloadData()
+                //self.saveItems()
         }
         
         // customize the action appearance
