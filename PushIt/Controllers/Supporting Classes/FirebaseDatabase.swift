@@ -158,6 +158,40 @@ class FirebaseDatabase {
         ])
     }
     
+    //MARK: - Get the list of documents in sub collections
+    //Common method to get all documents from sub collections, will be called from other get methods
+    private func getDocuments (docPath : String, docMessage : String, completion: @escaping (Dictionary<Int , Dictionary<String  , Any>>)->())  {
+        
+        var dictionary : Dictionary<Int, Dictionary<String  , Any>> = [:]
+        // db.collection("Users").document("as@li.com").collection("Friends")
+        db.collection(docPath).getDocuments { (querySnapshot, error) in
+            
+            if (self.checkError(error: error , whileDoing: docMessage)) {
+                var index = 0
+                for document in querySnapshot!.documents {
+                    dictionary[index] = document.data()
+                    //dictionary[document.documentID] = document.data()
+                    index += 1
+                }
+            }
+            
+            completion(dictionary)
+        }
+        
+    }
+    
+    
+    // Challenge Sub Collection
+    func getChallenges(usersEmail : String, completion: @escaping (Dictionary<Int  , Dictionary<String  , Any>>)->()){
+        path = "\(USERS_MAIN_COLLECTION)/\(usersEmail)/\(CHALLENGES_SUB_COLLECTION)"
+        message = "getting data from challenges"
+        
+        getDocuments(docPath: path, docMessage: message) { (holdingBookDictionary) in
+            
+            completion(holdingBookDictionary)
+        }
+        
+    }
     
     //MARK: Error
     private func checkError (error: Error?, whileDoing: String) -> Bool{

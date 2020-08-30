@@ -22,19 +22,23 @@ class challengesView: UITableViewController {
     //let coreDataInstance = CoreDataClass.sharedCoreData
     let progressBarInstance = SVProgressHUDClass.shared
     let coreDataClassShared = CoreDataClass.sharedCoreData
-
+    let firestoreClassShared = FirebaseDatabase.shared
     var itemArray = [Challenge]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad")
         // Do any additional setup after loading the view, typically from a nib.
         //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         //loadItems()
+        //loadItems()
+        //tableView.reloadData()
         tableView.rowHeight = 80
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear")
         loadItems()
         tableView.reloadData()
     }
@@ -74,18 +78,6 @@ class challengesView: UITableViewController {
     
     
     //MARK: - Model Manipulation Methods
-    
-    func saveItems()
-    {
-        do {
-            try context.save()
-        } catch {
-            print("Error saving context \(error)")
-        }
-        self.tableView.reloadData()
-        
-    }
-    
     func loadItems(with request: NSFetchRequest<Challenge> = Challenge.fetchRequest()) {
         do {
             itemArray = try context.fetch(request)
@@ -109,6 +101,7 @@ class challengesView: UITableViewController {
             
            //this is for user on his/her profile screen.  This if function perform sign out procces
             self.performSignOut()
+            self.coreDataClassShared.coreDataUpdated = false
             
         }))
         
@@ -120,7 +113,7 @@ class challengesView: UITableViewController {
         self.progressBarInstance.displayProgressBar()
         //This function call sign out user from Firebase Auth
         FirebaseAuth.sharedFirebaseAuth.signOutCurrentUser()
-        //self.coreDataInstance.resetAllEntities()
+        self.coreDataClassShared.resetAllEntities()
         self.navigationController?.navigationBar.isHidden = true;
         // get a reference to the app delegate
         let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
@@ -168,7 +161,12 @@ extension challengesView: SwipeTableViewCellDelegate{
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
                 self.context.delete(self.itemArray[indexPath.row])
+                // remove from firestore too
+                self.firestoreClassShared.removeChallenge(challengeName: self.itemArray[indexPath.row].name!)
+            print(self.itemArray[indexPath.row].name!)
+
                 self.itemArray.remove(at: indexPath.row)
+                // remove from firestore too
                 self.coreDataClassShared.saveItems()
                 self.tableView.reloadData()
                 //self.saveItems()

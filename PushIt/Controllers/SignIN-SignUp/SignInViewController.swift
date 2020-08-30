@@ -41,20 +41,36 @@ class SignInViewController: UIViewController {
                 if let errorMsg = AuthErrorCode(rawValue: error!._code){
                                    
                     //Method inside additionalFunction class shows error
+                    self.progressBarInstance.dismissProgressBar()
                     self.commonFunctions.showError(error: error, errorMsg: errorMsg, screen: self)
                     }
                 } else{
                 //This method updates the currentUser variable which keeps track of email of currently logged in user
-                self.authInstance.updateCurrentUser()
                 //CoreDataClass.sharedCoreData.updateCoreData()
-                               
+                //self.authInstance.updateCurrentUser()
+                
+                //self.updateCoreData { () -> () in
+                self.authInstance.updateCurrentUser()
+                CoreDataClass.sharedCoreData.updateCoreData { ()->() in
+                    let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
+                    // call didFinishLaunchWithOptions, this will make HomeScreen as Root ViewController
+                    //Take user to Home Screen (Log In Screen), where user can log in.
+                    appDelegate?.applicationDidFinishLaunching(UIApplication.shared)
+                }
+
+                //}
+                // wait until Core Data updated, then call app delegate
+                //if (updated){
                 // get a reference to the app delegate
+                /*if(CoreDataClass.sharedCoreData.coreDataUpdated){
+                    self.progressBarInstance.dismissProgressBar()
                 let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
-                               
                 // call didFinishLaunchWithOptions, this will make HomeScreen as Root ViewController
                 //Take user to Home Screen (Log In Screen), where user can log in.
                 appDelegate?.applicationDidFinishLaunching(UIApplication.shared)
-                               
+                }*/
+                
+                //}
                 // SVProgressHUD.dismiss()
         }
         }
@@ -64,6 +80,11 @@ class SignInViewController: UIViewController {
 
     }
     
+    /*func updateCoreData(completion: ()->()){
+        CoreDataClass.sharedCoreData.updateCoreData()
+        completion()
+    }
+    */
     
     @IBAction func unwindToLogInScreen(_ sender: UIStoryboardSegue){}
 

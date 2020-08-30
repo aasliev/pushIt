@@ -17,7 +17,7 @@ class createChallengeView: UIViewController, UITextViewDelegate {
     let commonFunctions = CommonFunctions.sharedCommonFunction
     let coreDataShared = CoreDataClass.sharedCoreData
     let firebaseDatabase = FirebaseDatabase.shared
-    //let firebaseAuth = FirebaseAuth.sharedFirebaseAuth
+    let firebaseAuth = FirebaseAuth.sharedFirebaseAuth
     let notifications = notificationsFunctions()
     
     // users data
@@ -72,7 +72,10 @@ class createChallengeView: UIViewController, UITextViewDelegate {
             tmpChallenge.dateStart = dateStarted.date
             tmpChallenge.lastDateSkipped = dateStarted.date
             tmpChallenge.daysSkipped = 0
+            // save new challenge to core data
             coreDataShared.saveItems()
+            // save challenge to Firestore
+            firebaseDatabase.addToChallenges(currentUserEmail: firebaseAuth.getCurrentUserEmail(), challengeName: nameOfTheChallenge.text!, challengeMotivation: motivationText.text!, dateStarted: dateStarted.date)
             //self.saveItem()
             //performSegue(withIdentifier: "toChallengesView", sender: self)
             _ = navigationController?.popViewController(animated: true)
