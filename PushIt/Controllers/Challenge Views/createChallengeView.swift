@@ -11,6 +11,7 @@ import UserNotifications
 class createChallengeView: UIViewController, UITextViewDelegate {
     
     var calendar = Calendar.current
+    let todayDate = Date()
     //let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     //instances of shared classes
@@ -72,6 +73,8 @@ class createChallengeView: UIViewController, UITextViewDelegate {
             tmpChallenge.dateStart = dateStarted.date
             tmpChallenge.lastDateSkipped = dateStarted.date
             tmpChallenge.daysSkipped = 0
+            let tmp = self.calculateNumOfDays(startDate: tmpChallenge.lastDateSkipped!)
+            tmpChallenge.longestConDays = (Int(tmpChallenge.longestConDays) < tmp) ? Double(tmp) : tmpChallenge.longestConDays
             // save new challenge to core data
             coreDataShared.saveItems()
             // save challenge to Firestore
@@ -117,4 +120,12 @@ class createChallengeView: UIViewController, UITextViewDelegate {
         let challengeName = commonFunctions.checkIfEmpty(nameOfTheChallenge, "Name It", screen: self)
         return challengeName
     }
+    
+    /*func calculateNumOfDays(startDate : Date) -> Int {
+        
+
+        let diffInDays = Calendar.current.dateComponents([.day], from: startDate, to: self.todayDate).day ?? 0
+        
+        return diffInDays
+    }*/
 }

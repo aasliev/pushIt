@@ -24,7 +24,8 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        // hide keyboard
+        self.hideKeyboardWhenTappedAround()
     }
     //MARK: - Sign In
     @IBAction func signInButtonPressed(_ sender: Any) {
@@ -51,28 +52,24 @@ class SignInViewController: UIViewController {
                 
                 //self.updateCoreData { () -> () in
                 self.authInstance.updateCurrentUser()
-                CoreDataClass.sharedCoreData.updateCoreData { ()->() in
+                CoreDataClass.sharedCoreData.updateCoreData()
+                
+                //self.commonFunctions.createUIalert(title: "Welcome Back", "Please wait while we are loading data.", self)
+                
+                
+                let alertController = UIAlertController(title: "Loading Data", message: "Please wait while we are loading data.", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    //self.loadItems()
+                    //self.tableView.reloadData()
                     let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
                     // call didFinishLaunchWithOptions, this will make HomeScreen as Root ViewController
                     //Take user to Home Screen (Log In Screen), where user can log in.
                     appDelegate?.applicationDidFinishLaunching(UIApplication.shared)
-                }
-
-                //}
-                // wait until Core Data updated, then call app delegate
-                //if (updated){
-                // get a reference to the app delegate
-                /*if(CoreDataClass.sharedCoreData.coreDataUpdated){
-                    self.progressBarInstance.dismissProgressBar()
-                let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
-                // call didFinishLaunchWithOptions, this will make HomeScreen as Root ViewController
-                //Take user to Home Screen (Log In Screen), where user can log in.
-                appDelegate?.applicationDidFinishLaunching(UIApplication.shared)
-                }*/
+                }))
+                self.present(alertController, animated: true, completion: nil)
                 
-                //}
-                // SVProgressHUD.dismiss()
-        }
+
+            }
         }
             
         }
@@ -102,37 +99,4 @@ class SignInViewController: UIViewController {
 //firestore.instence.collection('users').getDocument('asli@1.2').collection(friends_sub_collection).getDocument().where(friends_email='rv.1@2.com')
     
 }
-/*
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    func moveScreenWithKeyboard(){
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height-70
-                
-            }
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
-        }
-    }
-}
-*/
 

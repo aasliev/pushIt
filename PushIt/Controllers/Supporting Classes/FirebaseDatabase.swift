@@ -208,6 +208,38 @@ class FirebaseDatabase {
         }
         
     }
-
+    
+    // MARK: - Update functions for challenge
+    // users/usersEmail/challengeName
+    // update last date skipped
+    func updateChallengeField(usersEmail: String, challengeName: String,fieldName: String, data: Any){
+        let path = "\(USERS_MAIN_COLLECTION)/\(usersEmail)/\(CHALLENGES_SUB_COLLECTION)"
+        let ref = db.collection(path).document(challengeName)
+        ref.updateData([
+            fieldName: data
+        ])
+    }
+    /*
+    func updateLastDateSkipped(usersEmail: String, challengeName: String, date: Date){
+        let path = "\(USERS_MAIN_COLLECTION)/\(usersEmail)/"
+        let ref = db.collection(path).document(challengeName)
+        ref.updateData([
+            self.LAST_DATE_SKIPPED_FIELD: date
+        ])
+    }
+    
+    // update number of consecutive
+    func updateNumOfConDays(usersEmail: String, challengeName: String, newData: Int){
+        let path = "\(USERS_MAIN_COLLECTION)/\(usersEmail)/\(CHALLENGES_SUB_COLLECTION)"
+        let ref = db.collection(path).document(challengeName)
+        ref.updateData([
+            self.LONGEST_CON_DAY_FIELD: newData
+        ])
+    }
+    
+    // update number of skipped days
+    func updateNumOfSkippedDays(usersEmail: String, challengeName: String, newData: Int){
+        
+    }*/
 
 }

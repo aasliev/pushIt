@@ -18,6 +18,8 @@ class showChallengesView: UIViewController {
     let todayDate = Date()
     let commonFunctions = CommonFunctions.sharedCommonFunction
     let coreDataClassShare = CoreDataClass.sharedCoreData
+    let firebaseClassShared = FirebaseDatabase.shared
+    let firebaseAuthClassShared = FirebaseAuth.sharedFirebaseAuth
     let notifications = notificationsFunctions()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -33,7 +35,7 @@ class showChallengesView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadData()
-        self.hideKeyboardWhenTappedAround()
+        //self.hideKeyboardWhenTappedAround()
         //motivationText.isEditable = false
         
         // daily 8:00 am and 8:00 pm notifications..
@@ -47,6 +49,10 @@ class showChallengesView: UIViewController {
         timeComponent.second = 0
         notifications.dailyNotification(title: "How was your day?", body: "Don't forget to evaluate your day before going to sleep.", time: timeComponent, identifier: "night")
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.reloadData()
     }
     
     
@@ -81,15 +87,31 @@ class showChallengesView: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: .cancel))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
         
-        let daysSkipped = self.selectedChallenge?.daysSkipped
-        let longestCon = self.selectedChallenge?.longestConDays
+            let daysSkipped = self.selectedChallenge?.daysSkipped
+            let longestCon = self.selectedChallenge?.longestConDays
             if (!self.checkDate(date: self.selectedChallenge?.lastDateSkipped as! Date)){
-            self.selectedChallenge?.daysSkipped = Double(Int(daysSkipped!) + 1)
-            self.selectedChallenge?.longestConDays = Double(Int(longestCon!) - 1)
-            //print("Inside if: (#of skipped days...", self.selectedChallenge?.daysSkipped, self.selectedChallenge?.longestConDays)
-            //reload data
-            self.selectedChallenge?.lastDateSkipped = self.todayDate
-            self.reloadData()
+                self.selectedChallenge?.daysSkipped = Double(Int(daysSkipped!) + 1)
+                self.selectedChallenge?.longestConDays = Double(Int(longestCon!) - 1)
+                //reload data
+                self.selectedChallenge?.lastDateSkipped = self.todayDate
+                self.reloadData()
+                self.coreDataClassShare.saveItems()
+                // update Firebase Data
+                let challengeName = self.selectedChallenge?.name as! String
+                let daysSkipped = self.selectedChallenge?.daysSkipped as! Double
+                // update number of skipped days
+                self.firebaseClassShared.updateChallengeField(
+                    usersEmail: self.firebaseAuthClassShared.getCurrentUserEmail(),
+                    challengeName: challengeName,
+                    fieldName: self.firebaseClassShared.NUMBER_OF_DAYS_SKIPPED_FIELD,
+                    data: Int(daysSkipped))
+                //update last skipped date
+                self.firebaseClassShared.updateChallengeField(
+                    usersEmail: self.firebaseAuthClassShared.getCurrentUserEmail(),
+                    challengeName: challengeName,
+                    fieldName: self.firebaseClassShared.LAST_DATE_SKIPPED_FIELD,
+                    data: self.todayDate as! Date)
+                
         }
         else {
             print("Error")
@@ -109,18 +131,16 @@ class showChallengesView: UIViewController {
          motivationText.text = selectedChallenge?.motivation
         
         // longest consecutive day
-        let tmpConDay = selectedChallenge?.longestConDays
-        let lastSkippedDay = selectedChallenge?.lastDateSkipped as! Date
-        let daysSinceLastSkip = calculateNumOfDays(startDate: lastSkippedDay)
+        let tmpConDay = (selectedChallenge?.longestConDays ?? 0) as Double
+        let lastSkippedDay = selectedChallenge?.lastDateSkipped!
+        let daysSinceLastSkip = Double(calculateNumOfDays(startDate: lastSkippedDay!))
         
-        
-        if (Int(tmpConDay!) <= daysSinceLastSkip){
-            selectedChallenge?.longestConDays = Double(daysSinceLastSkip)
-        }
+        selectedChallenge?.longestConDays = tmpConDay < daysSinceLastSkip ? daysSinceLastSkip : tmpConDay
         numOfDays.text = String(Int(selectedChallenge?.longestConDays ?? 0))
-         // total days..
-         let startDate = selectedChallenge?.dateStart as! Date
-         let total = calculateNumOfDays(startDate: startDate)
+        
+        // total days..
+        let startDate = selectedChallenge?.dateStart!
+         let total = calculateNumOfDays(startDate: startDate!)
          totalDays.text = String(total)
          
          //skipped days
@@ -131,6 +151,14 @@ class showChallengesView: UIViewController {
          //print("days without fail: ", days_wo_fail)
         //print("before saving: ", selectedChallenge?.longestConDays)
         //self.saveItem()
+        self.coreDataClassShare.saveItems()
+        // update Firebase for number of consecutive days
+        let numOfConDays = selectedChallenge?.longestConDays as! Double
+        self.firebaseClassShared.updateChallengeField(
+            usersEmail: self.firebaseAuthClassShared.getCurrentUserEmail(),
+            challengeName: self.selectedChallenge?.name as! String,
+            fieldName: self.firebaseClassShared.LONGEST_CON_DAY_FIELD,
+            data: Int(numOfConDays))
     }
     
 
@@ -155,11 +183,11 @@ class showChallengesView: UIViewController {
 }
 
 
-extension showChallengesView{
+extension UIViewController{
     func calculateNumOfDays(startDate : Date) -> Int {
         
 
-        let diffInDays = Calendar.current.dateComponents([.day], from: startDate, to: self.todayDate).day ?? 0
+        let diffInDays = Calendar.current.dateComponents([.day], from: startDate, to: Date()).day ?? 0
         
         return diffInDays
     }

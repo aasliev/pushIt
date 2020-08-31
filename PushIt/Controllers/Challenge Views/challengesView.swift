@@ -28,19 +28,37 @@ class challengesView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad")
+        //print("viewDidLoad")
         // Do any additional setup after loading the view, typically from a nib.
         //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         //loadItems()
         //loadItems()
         //tableView.reloadData()
+        
+        // cheap way to reaload data, when user just signs in
+        /*
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+ */
+        
+        
         tableView.rowHeight = 80
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("viewDidAppear")
+        //print("viewDidAppear")
         loadItems()
         tableView.reloadData()
+        /*
+        let alertController = UIAlertController(title: "Loading Data", message: "Please wait while we are loading data.", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            self.loadItems()
+            self.tableView.reloadData()
+        }))
+        self.present(alertController, animated: true, completion: nil)
+*/
     }
     
     
@@ -192,4 +210,24 @@ func hideKeyboardWhenTappedAround() {
 @objc func dismissKeyboard() {
     view.endEditing(true)
 }
+    
+    func moveScreenWithKeyboard(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height-70
+                
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
 }
