@@ -172,10 +172,10 @@
 		36CF1AB52374CD4F000C6E7B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				364F056625094D4500AABEEF /* ProfileScreenView.swift */,
 				364F0569250A9A2A00AABEEF /* Friends Views */,
 				368DADEE24F034E10065C529 /* Supporting Classes */,
 				368DADEF24F035440065C529 /* SignIN-SignUp */,
-				364F056625094D4500AABEEF /* ProfileScreenView.swift */,
 				368DADED24F034C40065C529 /* Challenge Views */,
 			);
 			path = Controllers;

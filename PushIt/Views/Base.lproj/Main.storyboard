@@ -450,22 +450,25 @@
                                     <constraint firstItem="Y9U-en-eMi" firstAttribute="centerX" secondItem="zOP-87-hTR" secondAttribute="centerX" id="xIC-Fj-Nuf"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Uj-ha-fkc">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Snh-VW-huV">
                                 <rect key="frame" x="163.5" y="748" width="87" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Sign Out">
                                     <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="signOutButtonPressed:" destination="9ei-TH-g0R" eventType="touchUpInside" id="9HR-sx-d8B"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="zOP-87-hTR" firstAttribute="top" secondItem="BJc-Ac-diy" secondAttribute="top" id="3bv-ak-uzx"/>
-                            <constraint firstItem="5Uj-ha-fkc" firstAttribute="centerX" secondItem="lau-fc-rTV" secondAttribute="centerX" id="EFp-ao-r3Q"/>
-                            <constraint firstItem="BJc-Ac-diy" firstAttribute="bottom" secondItem="5Uj-ha-fkc" secondAttribute="bottom" constant="20" id="TRI-4M-2xz"/>
+                            <constraint firstItem="Snh-VW-huV" firstAttribute="centerX" secondItem="lau-fc-rTV" secondAttribute="centerX" id="bTK-SM-lhe"/>
                             <constraint firstItem="zOP-87-hTR" firstAttribute="centerX" secondItem="lau-fc-rTV" secondAttribute="centerX" id="dNO-hG-7He"/>
                             <constraint firstItem="zOP-87-hTR" firstAttribute="leading" secondItem="BJc-Ac-diy" secondAttribute="leading" id="h73-Ss-I4k"/>
                             <constraint firstItem="zOP-87-hTR" firstAttribute="trailing" secondItem="BJc-Ac-diy" secondAttribute="trailing" id="s8t-2n-OOp"/>
+                            <constraint firstItem="BJc-Ac-diy" firstAttribute="bottom" secondItem="Snh-VW-huV" secondAttribute="bottom" constant="20" id="tcB-K0-1oj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BJc-Ac-diy"/>
                     </view>
@@ -477,7 +480,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pAU-EQ-ALW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1764" y="694"/>
+            <point key="canvasLocation" x="1392.753623188406" y="643.52678571428567"/>
         </scene>
         <!--Friends Screen-->
         <scene sceneID="kDr-6b-xNB">
@@ -586,6 +589,7 @@
                 <tabBarController storyboardIdentifier="ChallengesView" automaticallyAdjustsScrollViewInsets="NO" id="bDA-CD-8sy" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8uR-6K-CVM">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
