@@ -29,6 +29,7 @@ class createChallengeView: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.tabBarController?.tabBar.isHidden = true
         
         self.hideKeyboardWhenTappedAround()
         calendar.timeZone = TimeZone.current

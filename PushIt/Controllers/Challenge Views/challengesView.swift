@@ -28,21 +28,23 @@ class challengesView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print("viewDidLoad")
-        // Do any additional setup after loading the view, typically from a nib.
-        //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        //loadItems()
-        //loadItems()
-        //tableView.reloadData()
-        
-        // cheap way to reaload data, when user just signs in
+        self.navigationController?.tabBarController?.tabBar.isHidden = false
         /*
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        self.present(alertController, animated: true, completion: nil)
- */
+        // bar button circle image
+       let avatarSize: CGFloat = 30
+       let button = UIButton()
+       button.frame = CGRect(x: 0, y: 0, width: avatarSize, height: avatarSize)
+        button.setImage(UIImage(named: "P1_2"), for: .normal)
+        //.resizeImage(avatarSize, opaque: false), for: .normal)
+
+       if let buttonImageView = button.imageView {
+           button.imageView?.layer.cornerRadius = buttonImageView.frame.size.width / 2
+           button.imageView?.clipsToBounds = true
+           button.imageView?.contentMode = .scaleAspectFit
+       }
         
+        //------------------------
+        */
         
         tableView.rowHeight = 80
     }
@@ -51,6 +53,8 @@ class challengesView: UITableViewController {
         //print("viewDidAppear")
         loadItems()
         tableView.reloadData()
+        self.navigationController?.tabBarController?.tabBar.isHidden = false
+
         /*
         let alertController = UIAlertController(title: "Loading Data", message: "Please wait while we are loading data.", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
@@ -61,6 +65,18 @@ class challengesView: UITableViewController {
 */
     }
     
+    /*@IBAction func segueButtonPressed(_ sender: Any) {
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        super.prepare(for: segue, sender: sender)
+
+        if let secondViewController = segue.destination as? ProfileScreenView {
+            secondViewController.modalPresentationStyle = .fullScreen
+        }
+    }
+    */
     
     //MARK: -  TableView DataSource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,6 +107,11 @@ class challengesView: UITableViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 destinationVC.selectedChallenge = itemArray[indexPath.row]
             }
+        } else if segue.identifier == "toProfileView"{
+            if let destinationVC = segue.destination as? ProfileScreenView {
+                destinationVC.modalPresentationStyle = .fullScreen
+            }
+            
         }
     }
     
@@ -108,7 +129,7 @@ class challengesView: UITableViewController {
     // MARK: - log out function (for now, later it will be view profile)
     
     @IBAction func profileButtonPressed(_ sender: Any) {
-        // log out and go to log in page
+       /* // log out and go to log in page
         let alert : UIAlertController
         alert = UIAlertController(title: "Sing out", message: "Do you want to sign out?", preferredStyle: .alert)
         
@@ -123,7 +144,8 @@ class challengesView: UITableViewController {
             
         }))
         
-        self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)*/
+        
         
     }
     //MARK: Perform Sign Out

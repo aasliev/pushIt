@@ -1,49 +1,49 @@
 {
   "images" : [
     {
-      "filename" : "Webp.net-resizeimage-2.jpg",
+      "filename" : "Webp.net-resizeimage.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "Webp.net-resizeimage-3.jpg",
+      "filename" : "Webp.net-resizeimage (1).png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
-      "filename" : "Webp.net-resizeimage-4.jpg",
+      "filename" : "Webp.net-resizeimage (2).png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "Webp.net-resizeimage-5.jpg",
+      "filename" : "Webp.net-resizeimage (3).png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "Webp.net-resizeimage-6.jpg",
+      "filename" : "Webp.net-resizeimage (4).png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "Webp.net-resizeimage-7.jpg",
+      "filename" : "Webp.net-resizeimage (6)-1.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "Webp.net-resizeimage.jpg",
+      "filename" : "Webp.net-resizeimage (6).png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "Webp.net-resizeimage-1.jpg",
+      "filename" : "Color & Off White BG.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
@@ -94,7 +94,7 @@
       "size" : "83.5x83.5"
     },
     {
-      "filename" : "Webp.net-resizeimage.png",
+      "filename" : "Webp.net-resizeimage (7).png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"

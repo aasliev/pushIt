@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="P1_2" translatesAutoresizingMaskIntoConstraints="NO" id="5J2-H5-Idk">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Color &amp; Off White BG" translatesAutoresizingMaskIntoConstraints="NO" id="5J2-H5-Idk">
                                 <rect key="frame" x="124" y="104" width="250" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="6P9-Wu-xVp"/>
@@ -29,29 +29,29 @@
                                     <constraint firstAttribute="width" constant="150" id="tpz-ck-Rxu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="90"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="t" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZd-xz-d2t">
                                 <rect key="frame" x="201.66666666666666" y="719.66666666666663" width="31" height="102.33333333333337"/>
                                 <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="90"/>
-                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="P" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ndj-Zi-jZt">
                                 <rect key="frame" x="103" y="612" width="55" height="102.66666666666663"/>
                                 <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="90"/>
-                                <color key="textColor" red="0.0" green="0.62986588480000005" blue="0.92086750269999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.1007834002" green="0.36493921280000002" blue="0.67223232980000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyK-wf-3Ap">
                                 <rect key="frame" x="165.66666666666666" y="719.66666666666663" width="36" height="102.33333333333337"/>
                                 <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="90"/>
-                                <color key="textColor" red="0.0" green="0.62986588480000005" blue="0.92086750269999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.1007834002" green="0.36493921280000002" blue="0.67223232980000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.99240404370000002" blue="0.97969239949999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LyK-wf-3Ap" secondAttribute="bottom" constant="40" id="3d8-bQ-vk3"/>
                             <constraint firstItem="gZd-xz-d2t" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="10" id="CBe-IE-eg9"/>
@@ -74,6 +74,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="P1_2" width="123.66666412353516" height="122"/>
+        <image name="Color &amp; Off White BG" width="60" height="60"/>
     </resources>
 </document>

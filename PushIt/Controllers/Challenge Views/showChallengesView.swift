@@ -35,6 +35,8 @@ class showChallengesView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadData()
+        self.navigationController?.tabBarController?.tabBar.isHidden = true
+
         //self.hideKeyboardWhenTappedAround()
         //motivationText.isEditable = false
         

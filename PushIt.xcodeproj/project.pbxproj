@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		364F056725094D4500AABEEF /* ProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F056625094D4500AABEEF /* ProfileScreenView.swift */; };
+		364F056B250A9A4D00AABEEF /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F056A250A9A4D00AABEEF /* FriendsView.swift */; };
 		3657102024A265D100E03ECD /* NotificationFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3657101F24A265D100E03ECD /* NotificationFunctions.swift */; };
 		368DADEC24EF1EF00065C529 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 368DADEB24EF1EF00065C529 /* SignIn.storyboard */; };
 		368DADF124F035B40065C529 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368DADF024F035B40065C529 /* SignInViewController.swift */; };
@@ -32,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		0CEFCD4FFFF63B794D3F5EBD /* Pods-PushIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PushIt.debug.xcconfig"; path = "Target Support Files/Pods-PushIt/Pods-PushIt.debug.xcconfig"; sourceTree = "<group>"; };
+		364F056625094D4500AABEEF /* ProfileScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenView.swift; sourceTree = "<group>"; };
+		364F056A250A9A4D00AABEEF /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		3657101F24A265D100E03ECD /* NotificationFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFunctions.swift; sourceTree = "<group>"; };
 		365ECABC23CA2CE3003619CC /* Push It.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Push It.entitlements"; sourceTree = "<group>"; };
 		368DADEB24EF1EF00065C529 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
@@ -78,6 +82,14 @@
 				DDEF64CFA625B7CB15D1FB70 /* Pods-PushIt.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		364F0569250A9A2A00AABEEF /* Friends Views */ = {
+			isa = PBXGroup;
+			children = (
+				364F056A250A9A4D00AABEEF /* FriendsView.swift */,
+			);
+			path = "Friends Views";
 			sourceTree = "<group>";
 		};
 		368DADED24F034C40065C529 /* Challenge Views */ = {
@@ -160,8 +172,10 @@
 		36CF1AB52374CD4F000C6E7B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				364F0569250A9A2A00AABEEF /* Friends Views */,
 				368DADEE24F034E10065C529 /* Supporting Classes */,
 				368DADEF24F035440065C529 /* SignIN-SignUp */,
+				364F056625094D4500AABEEF /* ProfileScreenView.swift */,
 				368DADED24F034C40065C529 /* Challenge Views */,
 			);
 			path = Controllers;
@@ -309,11 +323,13 @@
 				368DAE0124F0A9E30065C529 /* LaunchScreenViewController.swift in Sources */,
 				368DADFF24F0A6040065C529 /* FirebaseAuth.swift in Sources */,
 				368DADF124F035B40065C529 /* SignInViewController.swift in Sources */,
+				364F056B250A9A4D00AABEEF /* FriendsView.swift in Sources */,
 				3657102024A265D100E03ECD /* NotificationFunctions.swift in Sources */,
 				368DADF524F035E90065C529 /* ForgotPasswordViewController.swift in Sources */,
 				368DADF324F035D60065C529 /* SignUpViewController.swift in Sources */,
 				36CF1ABB2374CDF6000C6E7B /* createChallengeView.swift in Sources */,
 				36EEDB8D24F2AF2B00CD240A /* SVProgressHUDClass.swift in Sources */,
+				364F056725094D4500AABEEF /* ProfileScreenView.swift in Sources */,
 				36CF1AB92374CDCB000C6E7B /* challengesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,7 +485,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aasliev.PushIt;
 				PRODUCT_NAME = "Push It";
 				SWIFT_VERSION = 4.2;
@@ -490,7 +506,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aasliev.PushIt;
 				PRODUCT_NAME = "Push It";
 				SWIFT_VERSION = 4.2;
