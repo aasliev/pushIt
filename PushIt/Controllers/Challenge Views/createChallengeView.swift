@@ -122,11 +122,4 @@ class createChallengeView: UIViewController, UITextViewDelegate {
         return challengeName
     }
     
-    /*func calculateNumOfDays(startDate : Date) -> Int {
-        
-
-        let diffInDays = Calendar.current.dateComponents([.day], from: startDate, to: self.todayDate).day ?? 0
-        
-        return diffInDays
-    }*/
 }

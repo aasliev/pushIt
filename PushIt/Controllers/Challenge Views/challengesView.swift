@@ -29,54 +29,17 @@ class challengesView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.tabBarController?.tabBar.isHidden = false
-        /*
-        // bar button circle image
-       let avatarSize: CGFloat = 30
-       let button = UIButton()
-       button.frame = CGRect(x: 0, y: 0, width: avatarSize, height: avatarSize)
-        button.setImage(UIImage(named: "P1_2"), for: .normal)
-        //.resizeImage(avatarSize, opaque: false), for: .normal)
-
-       if let buttonImageView = button.imageView {
-           button.imageView?.layer.cornerRadius = buttonImageView.frame.size.width / 2
-           button.imageView?.clipsToBounds = true
-           button.imageView?.contentMode = .scaleAspectFit
-       }
+        tableView.rowHeight = 60
         
-        //------------------------
-        */
-        
-        tableView.rowHeight = 80
     }
     
     override func viewDidAppear(_ animated: Bool) {
         //print("viewDidAppear")
-        loadItems()
+        //loadItems()
+        itemArray = coreDataClassShared.loadChallenge()
         tableView.reloadData()
         self.navigationController?.tabBarController?.tabBar.isHidden = false
-
-        /*
-        let alertController = UIAlertController(title: "Loading Data", message: "Please wait while we are loading data.", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            self.loadItems()
-            self.tableView.reloadData()
-        }))
-        self.present(alertController, animated: true, completion: nil)
-*/
     }
-    
-    /*@IBAction func segueButtonPressed(_ sender: Any) {
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        super.prepare(for: segue, sender: sender)
-
-        if let secondViewController = segue.destination as? ProfileScreenView {
-            secondViewController.modalPresentationStyle = .fullScreen
-        }
-    }
-    */
     
     //MARK: -  TableView DataSource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -116,54 +79,6 @@ class challengesView: UITableViewController {
     }
     
     
-    //MARK: - Model Manipulation Methods
-    func loadItems(with request: NSFetchRequest<Challenge> = Challenge.fetchRequest()) {
-        do {
-            itemArray = try context.fetch(request)
-        } catch {
-            print("Error fetching data from context \(error)")
-        }
-        
-    }
-    
-    // MARK: - log out function (for now, later it will be view profile)
-    
-    @IBAction func profileButtonPressed(_ sender: Any) {
-       /* // log out and go to log in page
-        let alert : UIAlertController
-        alert = UIAlertController(title: "Sing out", message: "Do you want to sign out?", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "No", style: .cancel))
-        
-        //If user press 'yes', perform following functions
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-            
-           //this is for user on his/her profile screen.  This if function perform sign out procces
-            self.performSignOut()
-            self.coreDataClassShared.coreDataUpdated = false
-            
-        }))
-        
-        self.present(alert, animated: true, completion: nil)*/
-        
-        
-    }
-    //MARK: Perform Sign Out
-    func performSignOut () {
-        self.progressBarInstance.displayProgressBar()
-        //This function call sign out user from Firebase Auth
-        FirebaseAuth.sharedFirebaseAuth.signOutCurrentUser()
-        self.coreDataClassShared.resetAllEntities()
-        self.navigationController?.navigationBar.isHidden = true;
-        // get a reference to the app delegate
-        let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
-        // call didFinishLaunchWithOptions, this will make HomeScreen as Root ViewController
-        //Take user to Home Screen (Log In Screen), where user can log in.
-        appDelegate?.applicationDidFinishLaunching(UIApplication.shared)
-        self.progressBarInstance.dismissProgressBar()
-    }
-    
-    
 }
 
 
@@ -174,20 +89,20 @@ extension challengesView: UISearchBarDelegate
         let request : NSFetchRequest<Challenge> = Challenge.fetchRequest()
         request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
         
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        //request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         
-        loadItems(with: request)
+        itemArray = coreDataClassShared.loadChallenge(with: request)
         tableView.reloadData()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count==0{
-            loadItems()
+            itemArray = coreDataClassShared.loadChallenge()
             
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
             }
-            loadItems()
+            itemArray = coreDataClassShared.loadChallenge()
             tableView.reloadData()
         }
     }
@@ -253,3 +168,4 @@ func hideKeyboardWhenTappedAround() {
         }
     }
 }
+

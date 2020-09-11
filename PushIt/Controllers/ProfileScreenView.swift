@@ -13,6 +13,7 @@ class ProfileScreenView: UIViewController {
     let progressBarInstance = SVProgressHUDClass.shared
     let coreDataClassShared = CoreDataClass.sharedCoreData
     let firestoreClassShared = FirebaseDatabase.shared
+    let fireAuthClassShared = FirebaseAuth.sharedFirebaseAuth
 
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var firstNameLastNameLabel: UILabel!
@@ -22,10 +23,37 @@ class ProfileScreenView: UIViewController {
         self.navigationController?.tabBarController?.tabBar.isHidden = true
         // Do any additional setup after loading the view.
         //setting up profile picture
+        setProfilePicture()
+        setProfile()
+    }
+    
+    // set profilePicture
+    func setProfilePicture(){
         profilePicture.layer.cornerRadius = profilePicture.frame.size.width/2
         profilePicture.clipsToBounds = true
-        profilePicture.layer.borderColor = UIColor.white.cgColor
-        profilePicture.layer.borderWidth = 3
+        profilePicture.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentPicker))
+        profilePicture.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func presentPicker(){
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        picker.delegate = self
+        self.present(picker, animated: true, completion: nil)
+    }
+    
+    
+    // function to set up profile
+    func setProfile(){
+        self.progressBarInstance.displayProgressBar()
+        self.firestoreClassShared.getFirstLastName(usersEmail: self.fireAuthClassShared.getCurrentUserEmail()) { (fName, lName) in
+            self.firstNameLastNameLabel.text = "\(fName) \(lName)"
+            
+        }
+        self.progressBarInstance.dismissProgressBar()
+        
     }
     
     
@@ -69,4 +97,17 @@ class ProfileScreenView: UIViewController {
     }
     
     
+}
+
+extension ProfileScreenView: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let imageSelected = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+            profilePicture.image = imageSelected
+        }
+        
+        if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            profilePicture.image = originalImage
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
 }

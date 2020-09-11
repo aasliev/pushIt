@@ -7,7 +7,9 @@
 //
 
 import Firebase
-
+import FirebaseFirestore
+import FirebaseAuth
+import FirebaseCore
 class FirebaseDatabase {
 
     //MARK: Firestore Database Istance
@@ -219,27 +221,22 @@ class FirebaseDatabase {
             fieldName: data
         ])
     }
-    /*
-    func updateLastDateSkipped(usersEmail: String, challengeName: String, date: Date){
-        let path = "\(USERS_MAIN_COLLECTION)/\(usersEmail)/"
-        let ref = db.collection(path).document(challengeName)
-        ref.updateData([
-            self.LAST_DATE_SKIPPED_FIELD: date
-        ])
+    
+    // get user's first and last name
+    
+    func getFirstLastName(usersEmail: String, completion: @escaping (String, String) ->()){
+        var firstName = ""
+        var lastName = ""
+        db.collection(USERS_MAIN_COLLECTION).document(usersEmail).getDocument { (document, err) in
+            if let document = document, document.exists {
+                    
+                firstName = document.get(self.FIRST_NAME_FIELD) as! String
+                lastName = document.get(self.LAST_NAME_FIELD) as! String
+                if (firstName != "" || lastName != ""){
+                    completion(firstName, lastName)
+                }
+            }
+        }
     }
     
-    // update number of consecutive
-    func updateNumOfConDays(usersEmail: String, challengeName: String, newData: Int){
-        let path = "\(USERS_MAIN_COLLECTION)/\(usersEmail)/\(CHALLENGES_SUB_COLLECTION)"
-        let ref = db.collection(path).document(challengeName)
-        ref.updateData([
-            self.LONGEST_CON_DAY_FIELD: newData
-        ])
-    }
-    
-    // update number of skipped days
-    func updateNumOfSkippedDays(usersEmail: String, challengeName: String, newData: Int){
-        
-    }*/
-
 }

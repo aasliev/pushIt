@@ -5,15 +5,15 @@
 //  Created by Asliddin Asliev on 8/21/20.
 //  Copyright © 2020 Asliddin Asliev. All rights reserved.
 //
-
+import UIKit
 import Foundation
 import Firebase
+import FirebaseFirestore
 import CoreData
 
 class CoreDataClass{
-    
     let CHALLENGE_ENTITY = "Challenge"
-    
+    let FRIEND_ENTITY = "Friend"
     let DATE_STARTED = "dateStarted"
     let DAYS_SKIPPED = "daysSkipped"
     let LAST_DATE_SKIPPED = "lastDateSkipped"
@@ -21,19 +21,26 @@ class CoreDataClass{
     let MOTIVATION = "motivation"
     let NAME = "name"
     
-    var challengeArray  = [Challenge]()
+
+    var challengeArray = [Challenge]()
+    //var friendArray = [Friend]()
     var coreDataUpdated = false
     //Singleton
-       static let sharedCoreData = CoreDataClass()
-       let databaseInstance = FirebaseDatabase.shared
-       let authInstance = FirebaseAuth.sharedFirebaseAuth
-       let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    static let sharedCoreData = CoreDataClass()
+    let databaseInstance = FirebaseDatabase.shared
+    let authInstance = FirebaseAuth.sharedFirebaseAuth
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
        
-       private init() {}
-       
-       func getContext() -> NSManagedObjectContext {
-           return (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-       }
+    private init() {}
+    
+    
+    // NSFetchRequests for core data entities
+    lazy var challengeRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CHALLENGE_ENTITY)
+    lazy var friendRequest = NSFetchRequest<NSFetchRequestResult>(entityName: FRIEND_ENTITY)
+    
+    func getContext() -> NSManagedObjectContext {
+        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    }
     
       
     func saveItems()
@@ -46,7 +53,10 @@ class CoreDataClass{
         //self.tableView.reloadData()
         
     }
-    func loadItems(with request: NSFetchRequest<Challenge> = Challenge.fetchRequest()) -> [Challenge]{
+    //func tmp(with request: NSFetchRequest<>)
+    
+    func loadChallenge(with request: NSFetchRequest<Challenge> = Challenge.fetchRequest()) -> [Challenge]{
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         do {
             challengeArray = try context.fetch(request)
         } catch {

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import UserNotifications
 import Firebase
+import FirebaseAuth
 class CommonFunctions {
     
     static let sharedCommonFunction = CommonFunctions()
