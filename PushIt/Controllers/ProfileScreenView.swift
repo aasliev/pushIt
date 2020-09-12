@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class ProfileScreenView: UIViewController {
+    
+    let storage = Storage.storage()
     
     let progressBarInstance = SVProgressHUDClass.shared
     let coreDataClassShared = CoreDataClass.sharedCoreData
@@ -23,12 +26,17 @@ class ProfileScreenView: UIViewController {
         self.navigationController?.tabBarController?.tabBar.isHidden = true
         // Do any additional setup after loading the view.
         //setting up profile picture
+        self.progressBarInstance.displayProgressBar()
         setProfilePicture()
         setProfile()
+        self.progressBarInstance.dismissProgressBar()
     }
     
     // set profilePicture
     func setProfilePicture(){
+        // set image
+        // download from firebase storage
+        // userEmail/profile.jpg
         profilePicture.layer.cornerRadius = profilePicture.frame.size.width/2
         profilePicture.clipsToBounds = true
         profilePicture.isUserInteractionEnabled = true
@@ -52,8 +60,27 @@ class ProfileScreenView: UIViewController {
             self.firstNameLastNameLabel.text = "\(fName) \(lName)"
             
         }
-        self.progressBarInstance.dismissProgressBar()
+        // --- set profile picture
+        // get reference to the image
+        let storageRef = self.storage.reference()
+        //create a path
+        let profileImageRef = storageRef.child("\(self.fireAuthClassShared.getCurrentUserEmail())/profile.jpg")
         
+        // download image
+        // Download in memory with a maximum allowed size of 3MB (1 * 1024 * 1024 bytes)
+        profileImageRef.getData(maxSize: 3 * 1024 * 1024) { data, error in
+          if let error = error {
+            // Uh-oh, an error occurred!
+            print(error.localizedDescription)
+            print("error downloading image")
+          } else {
+            // Data for "usersEmail/profile.jpg" is returned
+            //print("no error")
+            let image = UIImage(data: data!)!
+            self.profilePicture.image = image
+          }
+        }
+        self.progressBarInstance.dismissProgressBar()
     }
     
     
@@ -96,6 +123,64 @@ class ProfileScreenView: UIViewController {
         self.progressBarInstance.dismissProgressBar()
     }
     
+    // MARK: - upload and download profile pic to Storage
+//    func downloadProfilePicture() -> UIImage {
+//        var image = UIImage(named: "profile")
+//        let storage = Storage.storage()
+//        // get referemce to storage
+//        let storageRef = storage.reference()
+//        //create a path
+//        let profileImageRef = storageRef.child("\(self.fireAuthClassShared.getCurrentUserEmail())/profile.jpg")
+//
+//        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+//        profileImageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
+//          if let error = error {
+//            // Uh-oh, an error occurred!
+//            print(error.localizedDescription)
+//            print("error downloading image")
+//          } else {
+//            // Data for "images/island.jpg" is returned
+//            print("no error")
+//            image = UIImage(data: data!)!
+//            print(image)
+//          }
+//        }
+//        print("checkc")
+//        return image ?? UIImage(named: "person") as! UIImage
+//    }
+    
+    func deleteProfilePicture(){
+        let storageRef = storage.reference()
+        let profileImageRef = storageRef.child("\(self.fireAuthClassShared.getCurrentUserEmail())/profile.jpg")
+        
+        // Delete the file
+        profileImageRef.delete { error in
+          if let error = error {
+            // Uh-oh, an error occurred!
+            print(error.localizedDescription)
+          } else {
+            // File deleted successfully
+            print("yay")
+          }
+    }
+    }
+    
+    func uploadProfilePicture(image: UIImage){
+        // remove prev profile pic from storage
+        self.deleteProfilePicture()
+        // get referemce to storage
+        let storageRef = storage.reference()
+        //create a path
+        let profileImageRef = storageRef.child("\(self.fireAuthClassShared.getCurrentUserEmail())/profile.jpg")
+        
+        // Upload the file to the path "userEmail/profile.jpg"
+        let uploadTask = profileImageRef.putData(image.pngData()!, metadata: nil) { (metadata, error) in
+          guard let metadata = metadata else {
+            // Uh-oh, an error occurred!
+            return
+          }
+    }
+    }
     
 }
 
@@ -103,10 +188,15 @@ extension ProfileScreenView: UIImagePickerControllerDelegate, UINavigationContro
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let imageSelected = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
             profilePicture.image = imageSelected
+            // upload image to firebase storage
+            self.uploadProfilePicture(image: imageSelected)
         }
         
         if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             profilePicture.image = originalImage
+            //
+            self.uploadProfilePicture(image: originalImage)
+
         }
         picker.dismiss(animated: true, completion: nil)
     }
