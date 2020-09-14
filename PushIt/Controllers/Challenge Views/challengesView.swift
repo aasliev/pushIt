@@ -24,7 +24,7 @@ class challengesView: UITableViewController {
     let coreDataClassShared = CoreDataClass.sharedCoreData
     let firestoreClassShared = FirebaseDatabase.shared
     var itemArray = [Challenge]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    //let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +115,8 @@ extension challengesView: SwipeTableViewCellDelegate{
         guard orientation == .right else { return nil }
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-                self.context.delete(self.itemArray[indexPath.row])
+            self.coreDataClassShared.getContext().delete(self.itemArray[indexPath.row])
+                //self.context.delete(self.itemArray[indexPath.row])
                 // remove from firestore too
                 self.firestoreClassShared.removeChallenge(challengeName: self.itemArray[indexPath.row].name!)
             print(self.itemArray[indexPath.row].name!)

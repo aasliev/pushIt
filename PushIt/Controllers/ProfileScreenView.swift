@@ -26,10 +26,10 @@ class ProfileScreenView: UIViewController {
         self.navigationController?.tabBarController?.tabBar.isHidden = true
         // Do any additional setup after loading the view.
         //setting up profile picture
-        self.progressBarInstance.displayProgressBar()
+        //self.progressBarInstance.displayProgressBar()
         setProfilePicture()
         setProfile()
-        self.progressBarInstance.dismissProgressBar()
+        //self.progressBarInstance.dismissProgressBar()
     }
     
     // set profilePicture
@@ -55,12 +55,20 @@ class ProfileScreenView: UIViewController {
     
     // function to set up profile
     func setProfile(){
-        self.progressBarInstance.displayProgressBar()
+        //self.progressBarInstance.displayProgressBar()
         self.firestoreClassShared.getFirstLastName(usersEmail: self.fireAuthClassShared.getCurrentUserEmail()) { (fName, lName) in
             self.firstNameLastNameLabel.text = "\(fName) \(lName)"
             
         }
         // --- set profile picture
+        
+        self.firestoreClassShared.downloadprofilePicture(email: self.fireAuthClassShared.getCurrentUserEmail()) { (image) in
+            if image != nil {
+                self.profilePicture.image = image
+            }
+        }
+        
+        /*
         // get reference to the image
         let storageRef = self.storage.reference()
         //create a path
@@ -80,7 +88,8 @@ class ProfileScreenView: UIViewController {
             self.profilePicture.image = image
           }
         }
-        self.progressBarInstance.dismissProgressBar()
+ */
+        //self.progressBarInstance.dismissProgressBar()
     }
     
     
@@ -124,30 +133,7 @@ class ProfileScreenView: UIViewController {
     }
     
     // MARK: - upload and download profile pic to Storage
-//    func downloadProfilePicture() -> UIImage {
-//        var image = UIImage(named: "profile")
-//        let storage = Storage.storage()
-//        // get referemce to storage
-//        let storageRef = storage.reference()
-//        //create a path
-//        let profileImageRef = storageRef.child("\(self.fireAuthClassShared.getCurrentUserEmail())/profile.jpg")
-//
-//        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-//        profileImageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
-//          if let error = error {
-//            // Uh-oh, an error occurred!
-//            print(error.localizedDescription)
-//            print("error downloading image")
-//          } else {
-//            // Data for "images/island.jpg" is returned
-//            print("no error")
-//            image = UIImage(data: data!)!
-//            print(image)
-//          }
-//        }
-//        print("checkc")
-//        return image ?? UIImage(named: "person") as! UIImage
-//    }
+   
     
     func deleteProfilePicture(){
         let storageRef = storage.reference()

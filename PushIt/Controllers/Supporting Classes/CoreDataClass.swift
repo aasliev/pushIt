@@ -12,8 +12,10 @@ import FirebaseFirestore
 import CoreData
 
 class CoreDataClass{
+    
     let CHALLENGE_ENTITY = "Challenge"
     let FRIEND_ENTITY = "Friend"
+    // challenge attributes
     let DATE_STARTED = "dateStarted"
     let DAYS_SKIPPED = "daysSkipped"
     let LAST_DATE_SKIPPED = "lastDateSkipped"
@@ -21,9 +23,14 @@ class CoreDataClass{
     let MOTIVATION = "motivation"
     let NAME = "name"
     
+    //friends attribute
+    let FRIEND_FIRST_NAME = "friendsFirstName"
+    let FRIEND_LAST_NAME = "friendsLastName"
+    let FRIEND_EMAIL = "friendsEmail"
+    let FRIEND_NUM_OF_CHALLENGE = "friendNumOfChallenges"
 
     var challengeArray = [Challenge]()
-    //var friendArray = [Friend]()
+    var friendArray = [Friend]()
     var coreDataUpdated = false
     //Singleton
     static let sharedCoreData = CoreDataClass()

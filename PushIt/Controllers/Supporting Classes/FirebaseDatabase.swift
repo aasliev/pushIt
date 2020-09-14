@@ -10,12 +10,14 @@ import Firebase
 import FirebaseFirestore
 import FirebaseAuth
 import FirebaseCore
+import FirebaseStorage
 class FirebaseDatabase {
 
     //MARK: Firestore Database Istance
     let config = FirebaseApp.configure()
     let db : Firestore
     let authInstance : FirebaseAuth
+    let storage = Storage.storage()
 
     //Singleton
     static let shared : FirebaseDatabase = FirebaseDatabase()
@@ -238,5 +240,28 @@ class FirebaseDatabase {
             }
         }
     }
+    
+    // download profile picture from firebase storage
+    func downloadprofilePicture(email: String, completion: @escaping (UIImage)->()){
+        
+        let storage = Storage.storage()
+        // get referemce to storage
+        let storageRef = storage.reference()
+        //create a path
+        let profileImageRef = storageRef.child("\(email)/profile.jpg")
+        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+               profileImageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
+                 if let error = error {
+                   // Uh-oh, an error occurred!
+                   print(error.localizedDescription)
+                   print("error downloading image")
+                 } else {
+                   // Data for "images/island.jpg" is returned
+                    let image = UIImage(data: data!)!
+                    completion(image)
+                 }
+               }
+    }
+    
     
 }

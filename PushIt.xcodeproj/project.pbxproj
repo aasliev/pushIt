@@ -10,6 +10,9 @@
 		364F056725094D4500AABEEF /* ProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F056625094D4500AABEEF /* ProfileScreenView.swift */; };
 		364F056B250A9A4D00AABEEF /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F056A250A9A4D00AABEEF /* FriendsView.swift */; };
 		3657102024A265D100E03ECD /* NotificationFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3657101F24A265D100E03ECD /* NotificationFunctions.swift */; };
+		368AF5F9250D4185003C3959 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AF5F8250D4185003C3959 /* FriendsTableViewCell.swift */; };
+		368AF5FB250FCE6D003C3959 /* SearchFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AF5FA250FCE6D003C3959 /* SearchFriendViewController.swift */; };
+		368AF5FD250FCE8E003C3959 /* SearchFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AF5FC250FCE8E003C3959 /* SearchFriendsTableViewCell.swift */; };
 		368DADEC24EF1EF00065C529 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 368DADEB24EF1EF00065C529 /* SignIn.storyboard */; };
 		368DADF124F035B40065C529 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368DADF024F035B40065C529 /* SignInViewController.swift */; };
 		368DADF324F035D60065C529 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368DADF224F035D60065C529 /* SignUpViewController.swift */; };
@@ -38,6 +41,9 @@
 		364F056A250A9A4D00AABEEF /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		3657101F24A265D100E03ECD /* NotificationFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFunctions.swift; sourceTree = "<group>"; };
 		365ECABC23CA2CE3003619CC /* Push It.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Push It.entitlements"; sourceTree = "<group>"; };
+		368AF5F8250D4185003C3959 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
+		368AF5FA250FCE6D003C3959 /* SearchFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendViewController.swift; sourceTree = "<group>"; };
+		368AF5FC250FCE8E003C3959 /* SearchFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsTableViewCell.swift; sourceTree = "<group>"; };
 		368DADEB24EF1EF00065C529 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		368DADF024F035B40065C529 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		368DADF224F035D60065C529 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -88,8 +94,18 @@
 			isa = PBXGroup;
 			children = (
 				364F056A250A9A4D00AABEEF /* FriendsView.swift */,
+				368AF5FA250FCE6D003C3959 /* SearchFriendViewController.swift */,
 			);
 			path = "Friends Views";
+			sourceTree = "<group>";
+		};
+		368AF5F5250D40A1003C3959 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				368AF5F8250D4185003C3959 /* FriendsTableViewCell.swift */,
+				368AF5FC250FCE8E003C3959 /* SearchFriendsTableViewCell.swift */,
+			);
+			path = "Custom Cells";
 			sourceTree = "<group>";
 		};
 		368DADED24F034C40065C529 /* Challenge Views */ = {
@@ -172,6 +188,7 @@
 		36CF1AB52374CD4F000C6E7B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				368AF5F5250D40A1003C3959 /* Custom Cells */,
 				364F056625094D4500AABEEF /* ProfileScreenView.swift */,
 				364F0569250A9A2A00AABEEF /* Friends Views */,
 				368DADEE24F034E10065C529 /* Supporting Classes */,
@@ -320,10 +337,13 @@
 				368DADFD24F0A5ED0065C529 /* CoreDataClass.swift in Sources */,
 				36CF1AA823746BF9000C6E7B /* PushIt.xcdatamodeld in Sources */,
 				368DADFB24F0A5DA0065C529 /* FirebaseDatabase.swift in Sources */,
+				368AF5FD250FCE8E003C3959 /* SearchFriendsTableViewCell.swift in Sources */,
 				368DAE0124F0A9E30065C529 /* LaunchScreenViewController.swift in Sources */,
 				368DADFF24F0A6040065C529 /* FirebaseAuth.swift in Sources */,
 				368DADF124F035B40065C529 /* SignInViewController.swift in Sources */,
+				368AF5F9250D4185003C3959 /* FriendsTableViewCell.swift in Sources */,
 				364F056B250A9A4D00AABEEF /* FriendsView.swift in Sources */,
+				368AF5FB250FCE6D003C3959 /* SearchFriendViewController.swift in Sources */,
 				3657102024A265D100E03ECD /* NotificationFunctions.swift in Sources */,
 				368DADF524F035E90065C529 /* ForgotPasswordViewController.swift in Sources */,
 				368DADF324F035D60065C529 /* SignUpViewController.swift in Sources */,
