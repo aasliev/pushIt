@@ -32,6 +32,7 @@ class FirebaseDatabase {
     let FIRST_NAME_FIELD = "first_name"
     let LAST_NAME_FIELD = "last_name"
     let NUMBER_OF_CHALLENGES = "number_of_challenges"
+    let SEARCH_NAME_FIELD = "searchName"
     
     let CHALLENGE_NAME_FIELD = "challenge_name"
     let CHALLENGE_MOTIVATION_FIELD = "challenge_motivation"
@@ -82,7 +83,8 @@ class FirebaseDatabase {
             USER_EMAIL_FIELD : email.lowercased(),
             FIRST_NAME_FIELD : firstName,
             LAST_NAME_FIELD : lastName,
-            NUMBER_OF_CHALLENGES : 0
+            NUMBER_OF_CHALLENGES : 0,
+            SEARCH_NAME_FIELD: "\(firstName.lowercased()) \(lastName.lowercased())"
         ]){ err in
             if let err = err{
                 print("Error writing document \(err)")
@@ -190,15 +192,15 @@ class FirebaseDatabase {
         path = "\(USERS_MAIN_COLLECTION)/\(usersEmail)/\(CHALLENGES_SUB_COLLECTION)"
         message = "getting data from challenges"
         
-        getDocuments(docPath: path, docMessage: message) { (holdingBookDictionary) in
+        getDocuments(docPath: path, docMessage: message) { (challengeDictionary) in
             
-            completion(holdingBookDictionary)
+            completion(challengeDictionary)
         }
         
     }
     
     //MARK: Error
-    private func checkError (error: Error?, whileDoing: String) -> Bool{
+    func checkError (error: Error?, whileDoing: String) -> Bool{
         
         //ternary operator
         //(error == err) ? print("Number of Swaps for Current User is incremented.") : print("Error while \(whileDoing): \(String(describing: error))")

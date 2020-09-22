@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwipeCellKit
+
 
 class FriendsView: UITableViewController{
     
@@ -43,8 +43,6 @@ class FriendsView: UITableViewController{
             cell.profilePicture.image = image
         }
         
-        
-        cell.delegate = self
         return cell
     }
     
@@ -69,6 +67,7 @@ class FriendsView: UITableViewController{
     
 }
 
+/*
 extension FriendsView: SwipeTableViewCellDelegate{
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         
@@ -92,10 +91,7 @@ extension FriendsView: SwipeTableViewCellDelegate{
         return [deleteAction]
  
  }
- 
-        
     
-    
-}
+}*/
 
 

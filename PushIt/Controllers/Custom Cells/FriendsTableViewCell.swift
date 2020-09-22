@@ -2,7 +2,7 @@
 //  FriendsTableViewCell.swift
 //  PushIt
 //
-//  Created by Asliddin Asliev on 9/12/20.
+//  Created by Asliddin Asliev on 9/21/20.
 //  Copyright © 2020 Asliddin Asliev. All rights reserved.
 //
 
@@ -12,9 +12,10 @@ class FriendsTableViewCell: SwipeTableViewCell {
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var firstNameLastName: UILabel!
     
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
+        super.awakeFromNib()
         // setup profile picture
-        
+        setUpProfilePicture()
     }
     
     func setUpProfilePicture(){

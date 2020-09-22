@@ -17,15 +17,23 @@ class SearchFriendsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        //setUpProfilePicture()
+        
+    }
+    func setUpProfilePicture(){
+        profilePicture.layer.cornerRadius = profilePicture.frame.size.width/2
+        profilePicture.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        print("selected")
     }
 
     @IBAction func addFriendButtonPressed(_ sender: Any) {
+        print("Button pressed")
         
     }
 }

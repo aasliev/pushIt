@@ -7,84 +7,133 @@
 //
 
 import UIKit
+import FirebaseFirestore
+struct searchFriend{
+    var firstName: String
+    var lastName: String
+    var email: String
+    var numOfChallenges: Int
+    init() {
+        firstName = ""
+        lastName = ""
+        email = ""
+        numOfChallenges = 0
+    }
+}
 
 class SearchFriendViewController: UITableViewController {
 
+    // singletons
+    let coreDataClassShared = CoreDataClass.sharedCoreData
+    let firestoreClassShared = FirebaseDatabase.shared
+    let firebaseAuthClassShared = FirebaseAuth.sharedFirebaseAuth
+    
+    
+    
+    var searchResult = [searchFriend]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //self.keyboardWillHide(notification: <#T##NSNotification#>)
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return searchResult.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchIdentifier", for: indexPath) as! SearchFriendsTableViewCell
 
         // Configure the cell...
-
+        cell.firstNameLastName.text = "\(searchResult[indexPath.row].firstName) \(searchResult[indexPath.row].lastName)"
+        //cell.profilePicture.image
+        self.firestoreClassShared.downloadprofilePicture(email: searchResult[indexPath.row].email) { (image) in
+            cell.profilePicture.image = image
+        }
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    
+    // load data from firestore to searchResult
+    // func to search by email
+    /*class func findUsers(text: String)->Void{
+        ref.child("Users").queryOrderedByChild("name").queryStartingAtValue(text).queryEndingAtValue(text+"\u{f8ff}").observeEventType(.Value, withBlock: { snapshot in
+            var user = User()
+            var users = [User]()
+            for u in snapshot.children{
+                user.name = u.value!["name"] as? String
+                ...
+                users.append(user)
+            }
+            self.users = users
+        })
+    }*/
+    
+    func loadSearchData(text: String, completion: @escaping ()->()){
+        print("looking for: \(text)")
+        searchResult.removeAll()
+        var user = searchFriend()
+        
+        let ref = firestoreClassShared.db
+        let searchName = firestoreClassShared.SEARCH_NAME_FIELD
+        
+        ref.collection(firestoreClassShared.USERS_MAIN_COLLECTION).order(by: searchName).limit(to: 10).whereField(searchName, isGreaterThanOrEqualTo: text.lowercased()).whereField(searchName, isLessThanOrEqualTo: text.lowercased() + "\u{f8ff}").getDocuments { (querySnapshot, err) in
+            
+            if err?.localizedDescription == nil {
+            //print("inside ref")
+            print(querySnapshot?.documents.count as Any)
+            
+            for doc in querySnapshot!.documents{
+                print("Data: ", doc.data())
+                user.email = (doc.data()[self.firestoreClassShared.USER_EMAIL_FIELD] as! String)
+                user.lastName = (doc.data()[self.firestoreClassShared.LAST_NAME_FIELD] as! String)
+                user.firstName = (doc.data()[self.firestoreClassShared.FIRST_NAME_FIELD] as! String)
+                user.numOfChallenges = (doc.data()[self.firestoreClassShared.NUMBER_OF_CHALLENGES] as! Int)
+                //print(user as Any)
+                self.searchResult.append(user)
+                completion()
+            }
+            } else {
+                print("error")
+                print(err?.localizedDescription)
+                //return
+            }
+            
+        }
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+}
+
+extension SearchFriendViewController: UISearchBarDelegate{
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // load data to searchResult
+        // call function
+        self.loadSearchData(text: searchBar.text!.lowercased()) {
+            print("inside search(number of data): ", self.searchResult.count)
+            self.tableView.reloadData()
+        }
+//        //self.loadSearchData(text: searchBar.text!.lowercased())
+//        print("inside seach(number of data): ", searchResult.count)
+//        for data in searchResult{
+//            print("inside search: " ,data)
+//        }
+//        tableView.reloadData()
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //if character count == 0, clear searchResult
+        if searchBar.text?.count == 0 {
+            searchResult.removeAll()
+        }
+        
+        tableView.reloadData()
+        
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
