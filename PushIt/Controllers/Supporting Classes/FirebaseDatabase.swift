@@ -204,6 +204,18 @@ class FirebaseDatabase {
         }
     }
     
+    // Friends Sub Collection
+    
+    func getFriends(usersEmail: String, completion: @escaping (Dictionary<Int,Dictionary<String, Any>>) -> ()){
+        
+        // get list of friends
+        path = "\(USERS_MAIN_COLLECTION)/\(usersEmail)/\(FRIENDS_SUB_COLLECTION)"
+        message = "getting fata from Friends sub collection"
+        
+        getDocuments(docPath: path, docMessage: message) { (friendsDictionary) in
+            completion(friendsDictionary)
+        }
+    }
     
     //MARK: Error
     func checkError (error: Error?, whileDoing: String) -> Bool{

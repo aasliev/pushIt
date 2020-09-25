@@ -85,12 +85,13 @@ class CoreDataClass{
     //Use of this function is when user sign out, this method will clear all data from all entities
     func resetAllEntities() -> Bool {
         let challengeRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CHALLENGE_ENTITY)
-        
+        let friendRequest = NSFetchRequest<NSFetchRequestResult>(entityName: FRIEND_ENTITY)
         // Create Batch Delete Request
         let challengeDeleteRequest = NSBatchDeleteRequest(fetchRequest: challengeRequest)
-        
+        let friendDeleteRequest = NSBatchDeleteRequest(fetchRequest: friendRequest)
         do {
             try self.context.execute(challengeDeleteRequest)
+            try self.context.execute(friendDeleteRequest)
             print("Successfully Emptied Core Data.")
             return true
         } catch {
@@ -103,6 +104,8 @@ class CoreDataClass{
     private func addDataToCoreData(){
         // for now we have only one entity (Challenge)
         addDataToChallenge()
+        addDataToFriend()
+        
     }
     
     func addDataToChallenge(){
@@ -139,6 +142,38 @@ class CoreDataClass{
         saveItems()
         coreDataUpdated = true
     }
+    
+    // friend funtions
+    func addDataToFriend(){
+        //Getting list of Challenges from Firestore Database
+        databaseInstance.getFriends(usersEmail: authInstance.getCurrentUserEmail()) { (friendsDict) in
+            print("From Core Data Class, addDataIntoEntities: \(friendsDict as AnyObject)")
+            self.addFriendList(friendList: friendsDict)
+    }
+    }
+    func addFriendList(friendList: Dictionary<Int , Dictionary <String, Any >>){
+        var friends = [Friend]()
+        
+        for(_, data) in friendList{
+            // create tmp challenge variable with the same context
+            let tmpFriend = Friend(context: getContext())
+            let firstName = (data[databaseInstance.FRIENDS_FIRST_NAME_FIELD] as! String)
+            let lastName = (data[databaseInstance.FRIENDS_LAST_NAME_FIELD] as! String)
+            let email = (data[databaseInstance.FRIENDS_EMAIL_FIELD] as! String)
+            let numOfChallenges = Int32(data[databaseInstance.NUMBER_OF_CHALLENGES] as! Int)
+            //print(dateStarted)
+            //print(lastDateSkipped as! Date)
+            tmpFriend.friendsEmail = email
+            tmpFriend.friendsFirstName = firstName
+            tmpFriend.friendsLastName = lastName
+            tmpFriend.friendsNumOfChallenges = numOfChallenges
+            friends.append(tmpFriend)
+        }
+        saveItems()
+        coreDataUpdated = true
+    }
+    
+    
     
     // updateCoreData every time user Signs In
     func updateCoreData() {
