@@ -415,7 +415,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zOP-87-hTR">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="331"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="yTr-sH-rVz">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank_profile" translatesAutoresizingMaskIntoConstraints="NO" id="yTr-sH-rVz">
                                         <rect key="frame" x="147" y="72.5" width="120" height="120"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -504,7 +504,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="vB8-96-DKr">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank_profile" translatesAutoresizingMaskIntoConstraints="NO" id="vB8-96-DKr">
                                             <rect key="frame" x="15" y="10" width="40" height="40"/>
                                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -581,7 +581,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="ZNH-I2-hdW">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank_profile" translatesAutoresizingMaskIntoConstraints="NO" id="ZNH-I2-hdW">
                                             <rect key="frame" x="15" y="10" width="40" height="40"/>
                                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -625,6 +625,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="addButton" destination="b7X-2M-Soo" id="SEH-Sn-RVD"/>
                                     <outlet property="email" destination="lbN-fZ-SJl" id="ngM-DD-Pgo"/>
                                     <outlet property="firstNameLastName" destination="5NS-Di-7Ve" id="wya-Su-lyI"/>
                                     <outlet property="profilePicture" destination="ZNH-I2-hdW" id="hDD-5i-nxd"/>
@@ -690,9 +691,9 @@
         <segue reference="vMo-6x-anK"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="blank_profile" width="1280" height="1280"/>
         <image name="envelope" catalog="system" width="128" height="93"/>
         <image name="flag" catalog="system" width="128" height="121"/>
-        <image name="person" width="32" height="32"/>
         <image name="person.2" catalog="system" width="128" height="81"/>
         <image name="person.badge.plus" catalog="system" width="128" height="116"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>

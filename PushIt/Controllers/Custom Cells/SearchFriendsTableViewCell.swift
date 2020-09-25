@@ -20,6 +20,7 @@ class SearchFriendsTableViewCell: UITableViewCell {
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var firstNameLastName: UILabel!
     @IBOutlet weak var email: UILabel!
+    @IBOutlet weak var addButton: UIButton!
     
     
     

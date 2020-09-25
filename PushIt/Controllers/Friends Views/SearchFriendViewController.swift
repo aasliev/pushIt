@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import FirebaseFirestore
 
 struct searchFriend{
@@ -65,6 +66,16 @@ class SearchFriendViewController: UITableViewController {
             cell.profilePicture.image = image
         }
         cell.email.text = searchResult[indexPath.row].email
+        if (self.checkIfFriend(email: searchResult[indexPath.row].email)){ // friends
+            if #available(iOS 13.0, *) {
+                cell.addButton.setImage(UIImage(systemName: "person.badge.minus"), for: .normal)
+                cell.addButton.isEnabled = false
+            } else {
+                // Fallback on earlier versions
+                cell.addButton.isHidden = true
+                cell.addButton.isEnabled = false
+            }
+        }
         return cell
     }
     
@@ -96,10 +107,37 @@ class SearchFriendViewController: UITableViewController {
             }
             } else {
                 print("error")
-                print(err?.localizedDescription)
+                print(err?.localizedDescription as Any)
                 //return
             }
             
+        }
+    }
+    
+    // check if Friends...
+    // return true if friends, false otherwise
+    func checkIfFriend (email : String) -> Bool {
+
+        let request: NSFetchRequest<Friend> = Friend.fetchRequest()
+        let predicate = NSPredicate(format: "friendsEmail == %@", email)
+        request.predicate = predicate
+        request.fetchLimit = 1
+        
+        do{
+            let count = try CoreDataClass.sharedCoreData.getContext().count(for: request)
+            if(count == 0){
+                // no matching object
+                return false
+            }
+            else{
+                // at least one matching object exists
+                print("Match Found!")
+                return true
+            }
+        }
+        catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+            return false
         }
     }
 
