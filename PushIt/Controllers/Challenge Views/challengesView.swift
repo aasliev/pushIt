@@ -31,6 +31,10 @@ class challengesView: UITableViewController {
         self.navigationController?.tabBarController?.tabBar.isHidden = false
         tableView.rowHeight = 60
         
+        print("--------------")
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

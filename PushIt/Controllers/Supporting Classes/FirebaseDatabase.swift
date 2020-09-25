@@ -119,17 +119,23 @@ class FirebaseDatabase {
         }
     }
     
-    func addToFriend(currentUserEmail: String, friendEmail: String, friendFirstName: String, friendLastName: String){
+    func addToFriend(currentUserEmail: String, friendInfo: searchFriend){
         
         path = "\(USERS_MAIN_COLLECTION)/\(currentUserEmail)/\(FRIENDS_SUB_COLLECTION)"
-        ref = db.collection(path).document("\(friendEmail)")
+        ref = db.collection(path).document("\(friendInfo.email)")
         
         ref.setData([
-            FRIENDS_LAST_NAME_FIELD: friendLastName,
-            FRIENDS_FIRST_NAME_FIELD: friendFirstName
+            FRIENDS_LAST_NAME_FIELD: friendInfo.lastName,
+            FRIENDS_FIRST_NAME_FIELD: friendInfo.firstName,
+            FRIENDS_EMAIL_FIELD: friendInfo.email,
+            NUMBER_OF_CHALLENGES: friendInfo.numOfChallenges
+            
         ]){ err in
             _ = self.checkError(error: err, whileDoing: "adding friend to Friend Sub-Collection")
         }
+        
+        // get all data from friend
+        
     }
     
     
@@ -196,8 +202,8 @@ class FirebaseDatabase {
             
             completion(challengeDictionary)
         }
-        
     }
+    
     
     //MARK: Error
     func checkError (error: Error?, whileDoing: String) -> Bool{
@@ -242,6 +248,25 @@ class FirebaseDatabase {
             }
         }
     }
+    // get user info
+    func getUserInfo(usersEmail: String, completion: @escaping (searchFriend) -> ()){
+        var tmpUser = searchFriend()
+        path = "\(USERS_MAIN_COLLECTION)/\(usersEmail)"
+        db.collection(USERS_MAIN_COLLECTION).document(usersEmail).getDocument { (doc, err) in
+            
+            if let doc = doc, doc.exists {
+                tmpUser.firstName = doc.get(self.FIRST_NAME_FIELD) as! String
+                tmpUser.lastName = doc.get(self.LAST_NAME_FIELD) as! String
+                tmpUser.email = doc.get(self.USER_EMAIL_FIELD) as! String
+                tmpUser.numOfChallenges = doc.get(self.NUMBER_OF_CHALLENGES) as! Int
+                if (!tmpUser.isEmpty()){
+                    completion(tmpUser)
+                }
+            }
+            
+        }
+    }
+    
     
     // download profile picture from firebase storage
     func downloadprofilePicture(email: String, completion: @escaping (UIImage)->()){

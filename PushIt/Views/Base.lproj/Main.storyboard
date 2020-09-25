@@ -26,11 +26,11 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="challengeCell" rowHeight="80" id="bwZ-hA-1kh" customClass="SwipeTableViewCell" customModule="SwipeCellKit">
-                                <rect key="frame" x="0.0" y="72" width="414" height="80"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="challengeCell" rowHeight="60" id="bwZ-hA-1kh" customClass="SwipeTableViewCell" customModule="SwipeCellKit">
+                                <rect key="frame" x="0.0" y="72" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bwZ-hA-1kh" id="LCH-VG-qMX">
-                                    <rect key="frame" x="0.0" y="0.0" width="383" height="80"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -513,21 +513,22 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name Last Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9c-ec-SrE">
-                                            <rect key="frame" x="70" y="21" width="192" height="24"/>
+                                            <rect key="frame" x="70" y="18" width="192" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="h9c-ec-SrE" firstAttribute="top" secondItem="NGp-c0-NN4" secondAttribute="topMargin" constant="10" id="7yl-Ax-0p1"/>
                                         <constraint firstItem="h9c-ec-SrE" firstAttribute="leading" secondItem="vB8-96-DKr" secondAttribute="trailing" constant="15" id="QMx-6c-DEU"/>
+                                        <constraint firstItem="h9c-ec-SrE" firstAttribute="centerY" secondItem="NGp-c0-NN4" secondAttribute="centerY" id="bn3-vi-V9Q"/>
                                         <constraint firstItem="vB8-96-DKr" firstAttribute="centerY" secondItem="NGp-c0-NN4" secondAttribute="centerY" id="hLt-Tb-fpw"/>
                                         <constraint firstItem="vB8-96-DKr" firstAttribute="leading" secondItem="NGp-c0-NN4" secondAttribute="leading" constant="15" id="sCY-vM-0EP"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="firstNameLastName" destination="h9c-ec-SrE" id="r6Q-nO-sXB"/>
+                                    <outlet property="profilePicture" destination="vB8-96-DKr" id="Hhc-1X-ySN"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -604,11 +605,19 @@
                                                 <action selector="addFriendButtonPressed:" destination="m1e-Uu-PWF" eventType="touchUpInside" id="njJ-Wu-4TV"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbN-fZ-SJl" userLabel="Email">
+                                            <rect key="frame" x="258" y="19.5" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="lbN-fZ-SJl" firstAttribute="leading" secondItem="5NS-Di-7Ve" secondAttribute="trailing" constant="5" id="2xI-iF-zT4"/>
                                         <constraint firstItem="ZNH-I2-hdW" firstAttribute="centerY" secondItem="Tmi-ez-qPv" secondAttribute="centerY" id="774-yG-rr0"/>
                                         <constraint firstItem="b7X-2M-Soo" firstAttribute="trailing" secondItem="Tmi-ez-qPv" secondAttribute="trailingMargin" constant="15" id="E5R-7R-6tE"/>
                                         <constraint firstItem="5NS-Di-7Ve" firstAttribute="leading" secondItem="ZNH-I2-hdW" secondAttribute="trailing" constant="15" id="SFz-y8-VxM"/>
+                                        <constraint firstItem="lbN-fZ-SJl" firstAttribute="centerY" secondItem="Tmi-ez-qPv" secondAttribute="centerY" id="XKY-PG-8BS"/>
                                         <constraint firstItem="ZNH-I2-hdW" firstAttribute="leading" secondItem="Tmi-ez-qPv" secondAttribute="leading" constant="15" id="Z89-cg-yva"/>
                                         <constraint firstItem="5NS-Di-7Ve" firstAttribute="centerY" secondItem="Tmi-ez-qPv" secondAttribute="centerY" id="dvZ-wj-vnm"/>
                                         <constraint firstItem="b7X-2M-Soo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5NS-Di-7Ve" secondAttribute="trailing" constant="8" symbolic="YES" id="iBW-4I-dDe"/>
@@ -616,6 +625,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="email" destination="lbN-fZ-SJl" id="ngM-DD-Pgo"/>
                                     <outlet property="firstNameLastName" destination="5NS-Di-7Ve" id="wya-Su-lyI"/>
                                     <outlet property="profilePicture" destination="ZNH-I2-hdW" id="hDD-5i-nxd"/>
                                 </connections>
@@ -626,7 +636,7 @@
                             <outlet property="delegate" destination="oPG-lW-adQ" id="fcb-fY-VF2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="g2U-SX-sg6"/>
+                    <navigationItem key="navigationItem" title="Find Friends" id="g2U-SX-sg6"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVx-Zq-xi3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -24,9 +24,15 @@ class FriendsView: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.tabBarController?.tabBar.isHidden = false
-        
+        tableView.rowHeight = 60
+        itemArray = coreDataClassShared.loadFriend()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        itemArray = coreDataClassShared.loadFriend()
+        tableView.reloadData()
+    }
+    
     // MARK: - Table DataSource Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,12 +52,14 @@ class FriendsView: UITableViewController{
         return cell
     }
     
+    
     //MARK: -  TableView Delegate Methods
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "toShowView", sender: self)
-           
-        tableView.deselectRow(at: indexPath, animated: true)
-       }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        self.performSegue(withIdentifier: "toShowView", sender: self)
+//           
+//        tableView.deselectRow(at: indexPath, animated: true)
+//       }
+//    
     
     
     

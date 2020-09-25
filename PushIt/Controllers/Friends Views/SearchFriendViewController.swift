@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseFirestore
+
 struct searchFriend{
     var firstName: String
     var lastName: String
@@ -18,6 +19,12 @@ struct searchFriend{
         lastName = ""
         email = ""
         numOfChallenges = 0
+    }
+    
+    func isEmpty() -> Bool{
+        if (firstName == "" && lastName == "" && email == "" && numOfChallenges == 0){
+            return true}
+        return false
     }
 }
 
@@ -35,6 +42,8 @@ class SearchFriendViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.keyboardWillHide(notification: <#T##NSNotification#>)
+        tableView.rowHeight = 60
+
     }
 
     // MARK: - Table view data source
@@ -55,24 +64,11 @@ class SearchFriendViewController: UITableViewController {
         self.firestoreClassShared.downloadprofilePicture(email: searchResult[indexPath.row].email) { (image) in
             cell.profilePicture.image = image
         }
+        cell.email.text = searchResult[indexPath.row].email
         return cell
     }
     
     
-    // load data from firestore to searchResult
-    // func to search by email
-    /*class func findUsers(text: String)->Void{
-        ref.child("Users").queryOrderedByChild("name").queryStartingAtValue(text).queryEndingAtValue(text+"\u{f8ff}").observeEventType(.Value, withBlock: { snapshot in
-            var user = User()
-            var users = [User]()
-            for u in snapshot.children{
-                user.name = u.value!["name"] as? String
-                ...
-                users.append(user)
-            }
-            self.users = users
-        })
-    }*/
     
     func loadSearchData(text: String, completion: @escaping ()->()){
         print("looking for: \(text)")

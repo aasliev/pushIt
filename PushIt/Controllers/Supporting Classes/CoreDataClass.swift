@@ -71,6 +71,16 @@ class CoreDataClass{
         }
     return challengeArray
     }
+    // load friend
+    func loadFriend(with request: NSFetchRequest<Friend> = Friend.fetchRequest()) -> [Friend]{
+        request.sortDescriptors = [NSSortDescriptor(key: "friendsFirstName", ascending: true)]
+        do {
+            friendArray = try context.fetch(request)
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
+    return friendArray
+    }
     
     //Use of this function is when user sign out, this method will clear all data from all entities
     func resetAllEntities() -> Bool {
